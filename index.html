@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leone — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--panel:#f4f4f4;--text:#111111;--muted:#555555;--orange:#111111;--line:#dddddd;--mono:'JetBrains Mono',monospace;--sans:Inter,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;background:var(--bg)}
+body{background:transparent;color:var(--text);font-family:var(--sans);overflow-x:hidden}
+#universe{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+.dots{position:fixed;width:340px;height:340px;pointer-events:none;background-image:radial-gradient(#00000022 1px,transparent 1px);background-size:16px 16px;mask-image:radial-gradient(circle,#000 0%,transparent 72%)}
+.dots.d1{top:-40px;right:-40px}.dots.d2{bottom:-40px;left:-40px}
+.nebula{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.22;animation:drift 46s ease-in-out infinite alternate}
+.nebula.n1{width:620px;height:620px;background:radial-gradient(circle,#00000018,transparent 70%);top:-180px;left:-140px}
+.nebula.n2{width:520px;height:520px;background:radial-gradient(circle,#00000012,transparent 70%);bottom:-160px;right:-120px;animation-delay:-15s}
+.nebula.n3{width:420px;height:420px;background:radial-gradient(circle,#00000012,transparent 70%);top:45%;left:58%;animation-delay:-30s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,-50px) scale(1.18)}}
+a{color:inherit;text-decoration:none}.wrap{width:min(1150px,92%);margin:auto}
+.mono{font-family:var(--mono)}
+nav{position:fixed;top:0;width:100%;z-index:20;background:#ffffffcc;backdrop-filter:blur(16px);border-bottom:1px solid #0000000d}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.logo{font-family:var(--mono);font-size:19px;font-weight:700}.logo i{color:var(--orange);font-style:normal}
+.links{display:flex;gap:25px;font-family:var(--mono);font-size:12px;color:#555}.links a:hover{color:#111}
+.hero{min-height:100vh;display:grid;align-items:center;padding-top:90px}.heroGrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+h1{font-family:var(--mono);font-weight:700;font-size:clamp(48px,7vw,80px);line-height:.95;letter-spacing:-.02em}
+.h1grad{color:transparent;-webkit-text-stroke:1.5px var(--orange);text-stroke:1.5px var(--orange)}
+.tech-text{position:relative;width:100%;touch-action:pan-y;user-select:none}
+.tech-text-canvas{display:block;width:100%;height:100%}
+#nameText{height:150px;margin-bottom:4px}
+@media(max-width:800px){#nameText{height:100px}}
+.badge{display:inline-flex;align-items:center;gap:2px;padding:8px 12px;border:1px solid #00000055;border-radius:99px;color:#333;font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:20px;min-height:1.4em}
+.caret{animation:blink 1s step-start infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:610px;color:#444;font-size:18px;line-height:1.7;margin:26px 0}.lead b{color:#111}
+.social{display:flex;gap:22px;font-family:var(--mono);font-size:13px;color:#555;margin-top:6px}.social a:hover{color:var(--orange)}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:13px 18px;border:1px solid var(--line);border-radius:10px;font-weight:700;font-family:var(--mono);font-size:13px;transition:.2s}.btn:hover{transform:translateY(-3px);border-color:#999}.primary{background:var(--orange);color:#fff;border-color:var(--orange)}
+.photoWrap{position:relative;width:100%;max-width:340px;aspect-ratio:1/1.05;margin:auto;border:1px solid var(--line);background:#eeeeee}
+.photoWrap img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;filter:grayscale(1) contrast(1.3);transition:transform .2s}
+.photoWrap.noimg img{display:none}
+.photoWrap .fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#555;font-family:var(--mono);font-size:12px;line-height:1.7;padding:20px}
+.photoWrap.noimg .fallback{display:grid}
+.photoWrap .tint{display:none}
+.photoWrap .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.45;background-image:radial-gradient(#000 1px,transparent 1.2px);background-size:4px 4px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:50px;border-top:1px solid var(--line)}
+.fact{background:var(--bg);padding:20px 10px}.fact strong{font-family:var(--mono);font-size:15px;display:block}.fact span{color:#555;font-size:11px;font-family:var(--mono)}
+section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px}
+.eyebrow{font-family:var(--mono);font-size:13px;color:#555}.eyebrow b{color:#111}
+.head h2{font-family:var(--mono);font-size:clamp(28px,4vw,42px);letter-spacing:-.02em}
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}.about p{font-size:19px;color:#444;line-height:1.65}
+.pstage{position:relative;height:420px;display:flex;align-items:center;justify-content:center}
+.pcard{position:absolute;width:min(460px,92%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.pcard .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.pill{font-family:var(--mono);font-size:10px;border:1px solid #ccc;border-radius:99px;padding:6px 11px;color:#555}
+.pTop{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.picon{width:44px;height:44px;border-radius:11px;overflow:hidden;background:#eeeeee;border:1px solid var(--line);position:relative;flex:none}
+.picon img{width:100%;height:100%;object-fit:cover;display:block}
+.picon.noimg img{display:none}
+.picon .pfallback{position:absolute;inset:0;display:none;place-items:center;font-family:var(--mono);font-size:16px;color:#777}
+.picon.noimg .pfallback{display:grid}
+.pcard h3{font-size:26px;letter-spacing:-.02em;margin:0}
+.psub{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.04em;color:#555;margin:0 0 12px 58px}.pcard p{color:#444;line-height:1.6;font-size:15px}
+.pcard .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.pcard .tag{font-family:var(--mono);font-size:10px;color:#555;border:1px solid #ccc;border-radius:99px;padding:6px 9px}
+.pnav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px;font-family:var(--mono)}
+.pnav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:#111;font-size:16px;cursor:pointer}.pnav button:hover{border-color:var(--orange);color:var(--orange)}
+.pnav span{color:#555;font-size:12px}
+.offer{display:block}
+.flex-offer{position:relative}
+.flex-carousel-shell{position:relative;width:100%;height:570px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#f8f8f8,#fff);isolation:isolate}
+.flex-carousel-shell::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#00000008,transparent 52%);pointer-events:none}
+.flex-carousel-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1200px;touch-action:pan-y;cursor:grab}
+.flex-carousel-stage.dragging{cursor:grabbing}
+.fc-card{position:absolute;width:min(310px,68vw);height:405px;border:1px solid #cfcfcf;border-radius:20px;overflow:hidden;background:#111;color:#fff;box-shadow:0 24px 70px #00000018;transition:transform .65s cubic-bezier(.18,.8,.22,1),opacity .5s,filter .5s;will-change:transform;user-select:none}
+.fc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,#000000c9 100%);pointer-events:none}
+.fc-card-media{position:absolute;inset:0;background:#ddd}
+.fc-card-media img,.fc-card-media video{width:100%;height:100%;display:block;object-fit:cover}
+.fc-card-media img{filter:grayscale(.25) contrast(1.05)}
+.fc-card-media.noimg img{display:none}
+.fc-card-media .fc-missing{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px;color:#888;font:11px var(--mono);line-height:1.7;background:#1b1b1b}
+.fc-card-media.noimg .fc-missing{display:grid}
+.fc-card-content{position:absolute;z-index:2;left:22px;right:22px;bottom:20px}
+.fc-number{font:700 10px var(--mono);letter-spacing:.16em;color:#ddd;margin-bottom:8px}
+.fc-title{font:700 25px var(--mono);line-height:1.05}
+.fc-subtitle{font-size:12px;color:#ddd;margin-top:8px;line-height:1.5}
+.fc-card.active{box-shadow:0 30px 90px #00000030}
+.fc-card.side{filter:saturate(.7)}
+.fc-card.hidden{pointer-events:none}
+.fc-overlay{position:absolute;z-index:5;top:22px;left:22px;right:22px;display:flex;justify-content:flex-end;align-items:flex-start;pointer-events:none}
+.fc-counter{font:700 11px var(--mono);color:#555}
+.fc-controls{position:absolute;z-index:7;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:12px}
+.fc-control{width:42px;height:42px;border-radius:50%;border:1px solid #cfcfcf;background:#ffffffe8;color:#111;cursor:pointer;font:700 16px var(--mono);transition:.2s;backdrop-filter:blur(8px)}
+.fc-control:hover{transform:translateY(-2px);border-color:#111;background:#111;color:#fff}
+.fc-dots{display:flex;gap:6px;align-items:center}
+.fc-dot{width:5px;height:5px;border-radius:50%;background:#aaa;transition:.25s}
+.fc-dot.active{width:22px;border-radius:999px;background:#111}
+@media(max-width:800px){
+ .flex-carousel-shell{height:500px;border-radius:18px}
+ .fc-card{height:350px;width:min(270px,70vw)}
+}
+@media(prefers-reduced-motion:reduce){
+ .fc-card{transition:none}
+}
+.timeline .time{display:grid;grid-template-columns:110px 1fr;gap:26px;padding:24px 0;border-bottom:1px solid var(--line)}
+.timeline .time:last-child{border-bottom:none}
+.time .age{font-family:var(--mono);color:var(--orange);font-weight:700}
+.time h3{font-size:20px;margin-bottom:6px}.time p{color:#444;line-height:1.6;font-size:14px}
+.contact{padding:55px;border:1px solid #dddddd;border-radius:24px;background:linear-gradient(135deg,#f7f7f7,#ffffff)}
+.contact h2{font-family:var(--mono);font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.01em;margin-top:10px}
+.contact p{max-width:600px;color:#444;line-height:1.6;margin:22px 0 28px}
+footer{padding:30px 0 45px;color:#555;font-size:12px;font-family:var(--mono);display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(25px);transition:.7s}.show{opacity:1;transform:none}
+.cursor{position:fixed;width:18px;height:18px;border:1px solid var(--orange);border-radius:50%;pointer-events:none;z-index:100;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:.15s}
+@media(max-width:800px){.links{display:none}.heroGrid,.about{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.timeline .time{grid-template-columns:1fr}section{padding:80px 0}.cursor{display:none}.dots{display:none}}
+</style>
+</head>
+<body>
+<canvas id="universe"></canvas>
+<div class="nebula n1"></div><div class="nebula n2"></div><div class="nebula n3"></div>
+<div class="dots d1"></div><div class="dots d2"></div>
+<nav><div class="wrap nav"><a class="logo" href="#home">LEONE<i>.</i></a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#offer">Skills</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div></div></nav>
+
+<main>
+<section class="hero" id="home"><div class="wrap heroGrid">
+
+<!-- PROFILE PHOTO — the face follows your cursor using 9 photos in the "images" folder:
+       images/face-c.jpg   (looking straight ahead — used when the cursor is centered)
+       images/face-n.jpg   images/face-ne.jpg   images/face-e.jpg   images/face-se.jpg
+       images/face-s.jpg   images/face-sw.jpg   images/face-w.jpg   images/face-nw.jpg -->
+<div class="visual reveal" id="visual">
+  <div class="photoWrap" id="photoWrap">
+    <img id="face" src="images/face-c.jpg" alt="Profile photo">
+    <div class="tint"></div>
+    <div class="grain"></div>
+    <div class="fallback">ADD AN "images" FOLDER<br>WITH face-c / n / ne / e / se /<br>s / sw / w / nw .jpg<br>NEXT TO THIS FILE</div>
+  </div>
+</div>
+
+<div class="reveal">
+<div class="badge"><span id="typed"></span><span class="caret">|</span></div>
+<div id="nameText"></div>
+<p class="lead">I'm an <b>AI & software engineer.</b> I build practical systems — from AI assistants to point-of-sale and kiosk software — and I ship new projects one after another.</p>
+<div class="social mono"><a href="#">github ↗</a><a href="https://www.linkedin.com/in/lyon-atlas-222624430/">linkedin ↗</a><a href="https://www.instagram.com/ly1_alt?stkn=MWtrbGc3Zms2ZnJybA%3D%3D&utm_source=qr">Instagram ↗</a></div>
+<div class="buttons"><a class="btn primary" href="#projects">View my work ↗</a><a class="btn" href="#contact">Start a project</a></div>
+</div>
+
+</div>
+<div class="wrap"><div class="facts reveal">
+<div class="fact"><strong>AI</strong><span>Agents & automation</span></div>
+<div class="fact"><strong>Robotics</strong><span>Competition experience</span></div>
+<div class="fact"><strong>Automation</strong><span>Workflows & tools</span></div>
+<div class="fact"><strong>Full-Stack</strong><span>Web & software</span></div>
+</div></div>
+</section>
+
+<section id="about"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>01</b> / About</div><h2>Curious. Adaptable.</h2></div><div class="about"><p>I enjoy building technology, solving problems and creating media — turning rough ideas into things people actually use.</p></div></div></section>
+
+<!-- PROJECTS ("Browse my builds") — icon images used here:
+       images/project-pos.jpg
+       images/project-scheduler.jpg
+       images/project-kiosk.jpg
+       images/project-localai.jpg -->
+<section id="projects"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>02</b> / Selected work</div><h2>Browse my builds.</h2></div>
+
+<div class="pstage" id="pstage">
+<article class="pcard" data-i="0">
+  <div class="pills"><span class="pill">RETAIL / BUSINESS</span></div>
+  <div class="pTop"><div class="picon"><img src="images/project-pos.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">P</span></div><h3>POS System</h3></div>
+  <p>A point-of-sale system built for small businesses — handling transactions, inventory and daily sales tracking in one interface.</p>
+  <div class="tags"><span class="tag">POS</span><span class="tag">Database</span><span class="tag">UI</span></div>
+</article>
+<article class="pcard" data-i="1">
+  <div class="pills"><span class="pill">AI / AUTOMATION</span></div>
+  <div class="pTop"><div class="picon"><img src="images/project-scheduler.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">A</span></div><h3>AI Scheduler</h3></div>
+  <p>An AI business assistant designed around the way people already communicate, helping users manage schedules and business operations through chat.</p>
+  <div class="tags"><span class="tag">AI</span><span class="tag">Automation</span><span class="tag">Python</span></div>
+</article>
+<article class="pcard" data-i="2">
+  <div class="pills"><span class="pill">SCHOOL THESIS</span></div>
+  <div class="pTop"><div class="picon"><img src="images/project-kiosk.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">K</span></div><h3>School Kiosk System</h3></div>
+  <div class="psub">MichEats</div>
+  <p>A kiosk system developed as a thesis project and implemented on a school campus, connecting software development with a real-world environment.</p>
+  <div class="tags"><span class="tag">Software</span><span class="tag">UI</span><span class="tag">Thesis</span></div>
+</article>
+<article class="pcard" data-i="3">
+  <div class="pills"><span class="pill">PERSONAL PROJECT</span></div>
+  <div class="pTop"><div class="picon"><img src="images/project-localai.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">L</span></div><h3>Local AI Assistant</h3></div>
+  <div class="psub">J.A.R.V.I.S</div>
+  <p>A local, on-device AI assistant for my own computer — runs without sending data to the cloud, built to help with everyday tasks and automation.</p>
+  <div class="tags"><span class="tag">AI</span><span class="tag">Local-first</span><span class="tag">Python</span></div>
+</article>
+</div>
+<div class="pnav mono"><button id="pprev">←</button><span id="pindex">1 / 4</span><button id="pnext">→</button></div>
+
+</div></section>
+
+<!-- WHAT I OFFER ("Skills in motion") — its own image set, separate from the projects:
+       images/skill-software.png
+       images/skill-ai.png
+       images/skill-firmware.png
+       images/skill-videography.png
+       images/social-skills.png -->
+<section id="offer"><div class="wrap reveal">
+<div class="head"><div class="eyebrow"><b>03</b> / What I offer</div><h2>Skills in motion.</h2></div>
+<div class="offer flex-offer">
+  <div class="flex-carousel-shell" id="flexCarousel">
+    <div class="fc-overlay">
+      <span class="fc-counter" id="fcCounter">01 / 05</span>
+    </div>
+    <div class="flex-carousel-stage" id="fcStage" aria-label="Skills carousel"></div>
+    <div class="fc-controls">
+      <button class="fc-control" id="fcPrev" aria-label="Previous skill">←</button>
+      <div class="fc-dots" id="fcDots"></div>
+      <button class="fc-control" id="fcNext" aria-label="Next skill">→</button>
+    </div>
+  </div>
+
+</div>
+</div></section>
+
+<!-- JOURNEY — edit ages / titles / descriptions here -->
+<section id="journey"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>04</b> / Journey</div><h2>Keep building.</h2></div><div class="timeline">
+<div class="time"><span class="age">AGE 15</span><div><h3>Started Coding and Software Development</h3><p>First steps into programming — learning the fundamentals and writing my first projects such as Applications and Miniature softwares.</p></div></div>
+<div class="time"><span class="age">AGE 16</span><div><h3>Joined Multiple Local Robotics and Coding Tournaments</h3><p>Competed in local robotics and coding events, building under real time pressure. And even winning.</p></div></div>
+<div class="time"><span class="age">AGE 17</span><div><h3>Developed Softwares and Systems</h3><p>Built kiosks, websites and robots — taking projects from idea to working system.</p></div></div>
+<div class="time"><span class="age">AGE 18</span><div><h3>Taking My Skills to a Professional Stage</h3><p>Applying everything learned so far to real, professional-level work.</p></div></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>05</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
+</main>
+<footer class="wrap"><span>© 2026 Leone</span><span>Built with curiosity.</span></footer>
+
+<script>
+(function(){
+const cv=document.getElementById('universe'),ctx=cv.getContext('2d');
+let w,h,stars,shoot=null,galaxy=[];
+function initGalaxy(){galaxy=[];const arms=4,perArm=130;
+ for(let a=0;a<arms;a++)for(let i=0;i<perArm;i++){const t=i/perArm;
+  galaxy.push({ang:a*(Math.PI*2/arms)+t*3.6*Math.PI+(Math.random()-.5)*.5,r:t+(Math.random()-.5)*.06,
+   sz:Math.random()*1.3+.3,c:Math.random()<.12?'#111':(Math.random()<.4?'#444':'#222')});}
+ for(let i=0;i<160;i++)galaxy.push({ang:Math.random()*Math.PI*2,r:Math.random()*.18,sz:Math.random()*1.1+.3,c:Math.random()<.5?'#111':'#333'});}
+function size(){w=cv.width=innerWidth;h=cv.height=innerHeight;
+ stars=Array.from({length:Math.round((w*h)/6000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.3,p:Math.random()*Math.PI*2,s:Math.random()*.02+.008}));}
+size();initGalaxy();addEventListener('resize',size);
+function frame(t){
+ ctx.clearRect(0,0,w,h);
+ for(const st of stars){
+  const tw=.5+.5*Math.sin(t*st.s+st.p);
+  ctx.globalAlpha=.25+tw*.75;
+  ctx.fillStyle='#111';
+  ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,7);ctx.fill();
+ }
+ ctx.globalAlpha=1;
+ if(!shoot&&Math.random()<.004){shoot={x:Math.random()*w*.6,y:Math.random()*h*.3,vx:6+Math.random()*4,vy:3+Math.random()*2,life:0};}
+ if(shoot){shoot.x+=shoot.vx;shoot.y+=shoot.vy;shoot.life++;
+  const grad=ctx.createLinearGradient(shoot.x,shoot.y,shoot.x-shoot.vx*8,shoot.y-shoot.vy*8);
+  grad.addColorStop(0,'#000');grad.addColorStop(1,'transparent');
+  ctx.strokeStyle=grad;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(shoot.x,shoot.y);ctx.lineTo(shoot.x-shoot.vx*8,shoot.y-shoot.vy*8);ctx.stroke();
+  if(shoot.life>60||shoot.x>w||shoot.y>h)shoot=null;}
+ // miniature milky way — centered, passively rotating spiral
+ const gcx=w*.5,gcy=h*.5,gR=Math.min(w,h)*.34,rot=t*0.000015;
+ const glowOuter=ctx.createRadialGradient(gcx,gcy,0,gcx,gcy,gR*.9);
+ glowOuter.addColorStop(0,'rgba(0,0,0,.06)');glowOuter.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=glowOuter;ctx.beginPath();ctx.arc(gcx,gcy,gR*.9,0,7);ctx.fill();
+ const core=ctx.createRadialGradient(gcx,gcy,0,gcx,gcy,gR*.22);
+ core.addColorStop(0,'rgba(0,0,0,.16)');core.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=core;ctx.beginPath();ctx.arc(gcx,gcy,gR*.22,0,7);ctx.fill();
+ for(const p of galaxy){const ang=p.ang+rot,x=gcx+Math.cos(ang)*p.r*gR,y=gcy+Math.sin(ang)*p.r*gR*.42;
+  ctx.globalAlpha=(1-p.r)*.75+.12;ctx.fillStyle=p.c||'#333';ctx.beginPath();ctx.arc(x,y,p.sz,0,7);ctx.fill();}
+ ctx.globalAlpha=1;
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+
+// ---- TechText: vanilla-JS port of the React Bits <TechText/> component ----
+function createTechText(container, opts) {
+  const LABEL_FONT = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+  const FALLOFF_STEPS = 8;
+  const SPRING = 320;
+  const DAMPING = 22;
+
+  const approach = (current, target, dt, seconds) => current + (target - current) * (1 - Math.exp(-dt / seconds));
+  const hexToRgb = hex => {
+    let h = String(hex || '').replace('#', '');
+    if (h.length === 3) h = h.replace(/./g, c => c + c);
+    const n = parseInt(h.slice(0, 6), 16);
+    return Number.isNaN(n) ? [255, 255, 255] : [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  };
+  const rgba = (hex, alpha) => { const [r, g, b] = hexToRgb(hex); return `rgba(${r}, ${g}, ${b}, ${alpha})`; };
+  const noise = (...values) => {
+    let h = 2166136261;
+    for (const value of values) { h = Math.imul(h ^ (value | 0), 16777619); h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; }
+    return (h >>> 0) / 4294967296;
+  };
+  const signed = value => (value > 0 ? `+${value}` : value < 0 ? `−${-value}` : '0');
+
+  const settings = Object.assign({
+    text: 'React Bits', fontFamily: '', fontWeight: 600, fontSize: 150, letterSpacing: -0.05,
+    color: '#ffffff', accentColor: '#ffffff', reach: 200, softness: 0.7, dashLength: 4, dashGap: 2,
+    strokeWidth: 1.5, lineStyle: 'dashed', reveal: 'letter', specks: 15, selection: true, labels: true,
+    draggable: true, sweep: true, speed: 1
+  }, opts);
+
+  container.classList.add('tech-text');
+  container.setAttribute('role', 'img');
+  container.setAttribute('aria-label', settings.text);
+  const canvas = document.createElement('canvas');
+  canvas.className = 'tech-text-canvas';
+  container.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const scratch = document.createElement('canvas');
+  const scratchCtx = scratch.getContext('2d');
+  if (!ctx || !scratchCtx) return { update() {}, destroy() {} };
+
+  const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  let width = 1, height = 1, dpr = 1, raf = 0, last = performance.now();
+  let visible = true, alive = true, layoutKey = '', requestedFont = '';
+  let word = null, glyphs = [], presence = 0, clock = 0, pulse = 0, placed = false, dragging = -1;
+  const pointer = { x: 0, y: 0, inside: false };
+  const grab = { x: 0, y: 0 };
+  const lens = { x: 0, y: 0 };
+  const frame = { x1: 0, y1: 0, x2: 0, y2: 0, alpha: 0, index: -1 };
+
+  const refreshFonts = () => { layoutKey = ''; wake(); };
+  const family = s => s.fontFamily || getComputedStyle(container).fontFamily || 'sans-serif';
+  const fontFor = (s, size) => `${s.fontWeight} ${size}px ${family(s)}`;
+  const setFont = (target, s, size) => {
+    target.font = fontFor(s, size);
+    if ('letterSpacing' in target) target.letterSpacing = `${s.letterSpacing * size}px`;
+    target.textAlign = 'left'; target.textBaseline = 'alphabetic';
+  };
+
+  const sprite = (s, view, glyph, stroke) => {
+    const pad = Math.ceil(s.strokeWidth * 2 + 4);
+    const left = glyph.box.x1 - pad, top = glyph.box.y1 - pad;
+    const w = glyph.box.x2 - glyph.box.x1 + pad * 2, h = glyph.box.y2 - glyph.box.y1 + pad * 2;
+    const image = document.createElement('canvas');
+    image.width = Math.max(1, Math.ceil(w * dpr)); image.height = Math.max(1, Math.ceil(h * dpr));
+    const c = image.getContext('2d');
+    if (!c) return { image, left, top };
+    c.setTransform(dpr, 0, 0, dpr, -left * dpr, -top * dpr);
+    setFont(c, s, view.size);
+    if (stroke) {
+      c.lineJoin = 'round'; c.lineWidth = s.strokeWidth * 2; c.lineCap = 'butt'; c.strokeStyle = s.color;
+      if (s.lineStyle !== 'solid') c.setLineDash([Math.max(1, s.dashLength), Math.max(1, s.dashGap)]);
+      c.strokeText(glyph.char, glyph.x, view.baseline);
+      c.setLineDash([]);
+      c.globalCompositeOperation = 'destination-out'; c.fillStyle = '#000000'; c.fillText(glyph.char, glyph.x, view.baseline);
+      c.globalCompositeOperation = 'source-over';
+    } else { c.fillStyle = s.color; c.fillText(glyph.char, glyph.x, view.baseline); }
+    return { image, left, top };
+  };
+
+  const ensureLayout = s => {
+    const key = [s.text, family(s), s.fontWeight, s.fontSize, s.letterSpacing, s.color, s.dashLength, s.dashGap, s.strokeWidth, s.lineStyle, width, height, dpr].join('|');
+    if (key === layoutKey && word) return word;
+    layoutKey = key;
+    const wanted = fontFor(s, 64);
+    if (document.fonts && wanted !== requestedFont) { requestedFont = wanted; document.fonts.load(wanted, s.text).then(refreshFonts, refreshFonts); }
+
+    const probe = scratchCtx;
+    setFont(probe, s, s.fontSize);
+    let m = probe.measureText(s.text);
+    const fit = Math.min(1, (width * 0.9) / Math.max(m.actualBoundingBoxLeft + m.actualBoundingBoxRight, 1), (height * 0.66) / Math.max(m.actualBoundingBoxAscent + m.actualBoundingBoxDescent, 1));
+    const size = s.fontSize * fit;
+    setFont(probe, s, size);
+    m = probe.measureText(s.text);
+    const inkWidth = m.actualBoundingBoxLeft + m.actualBoundingBoxRight, inkHeight = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+    const x = (width - inkWidth) / 2 + m.actualBoundingBoxLeft, baseline = (height - inkHeight) / 2 + m.actualBoundingBoxAscent;
+    const next = { size, baseline, left: x - m.actualBoundingBoxLeft, right: x + m.actualBoundingBoxRight, top: baseline - m.actualBoundingBoxAscent, bottom: baseline + m.actualBoundingBoxDescent };
+    word = next;
+
+    const chars = Array.from(s.text);
+    const previous = glyphs;
+    glyphs = [];
+    let prefix = '';
+    chars.forEach((char, i) => {
+      prefix += char;
+      const own = probe.measureText(char);
+      const gx = x + probe.measureText(prefix).width - own.width;
+      if (!char.trim()) return;
+      const base = { char, x: gx, box: { x1: gx - own.actualBoundingBoxLeft, y1: baseline - own.actualBoundingBoxAscent, x2: gx + own.actualBoundingBoxRight, y2: baseline + own.actualBoundingBoxDescent } };
+      const kept = previous[glyphs.length];
+      glyphs.push({ ...base, offset: kept?.char === char ? kept.offset : { x: 0, y: 0 }, velocity: { x: 0, y: 0 }, outline: 0, index: i, fill: sprite(s, next, base, false), dashes: sprite(s, next, base, true) });
+    });
+    dragging = -1; frame.index = -1;
+    return next;
+  };
+
+  const glyphAt = (x, y) => {
+    if (!word || y < word.top - 24 || y > word.bottom + 24) return -1;
+    let best = -1, bestDistance = Infinity;
+    glyphs.forEach((glyph, i) => {
+      const x1 = glyph.box.x1 + glyph.offset.x, x2 = glyph.box.x2 + glyph.offset.x;
+      const d = x < x1 ? x1 - x : x > x2 ? x - x2 : 0;
+      if (d < bestDistance) { bestDistance = d; best = i; }
+    });
+    return bestDistance < 28 ? best : -1;
+  };
+
+  const falloff = (target, cx, cy, radius, strength, softness) => {
+    const inner = Math.min(1, Math.max(0, 1 - softness));
+    const gradient = target.createRadialGradient(cx, cy, 0, cx, cy, radius);
+    gradient.addColorStop(0, `rgba(0, 0, 0, ${strength})`);
+    if (inner > 0.995) { gradient.addColorStop(0.995, `rgba(0, 0, 0, ${strength})`); gradient.addColorStop(1, 'rgba(0, 0, 0, 0)'); return gradient; }
+    for (let i = 0; i <= FALLOFF_STEPS; i++) { const t = i / FALLOFF_STEPS; const eased = t * t * (3 - 2 * t); gradient.addColorStop(inner + (1 - inner) * t, `rgba(0, 0, 0, ${strength * (1 - eased)})`); }
+    return gradient;
+  };
+
+  const blit = (target, art, dx, dy, originX, originY) => { target.drawImage(art.image, Math.round((art.left + dx) * dpr - originX), Math.round((art.top + dy) * dpr - originY)); };
+
+  const drawReveal = s => {
+    const radius = s.reach * dpr, cx = lens.x * dpr, cy = lens.y * dpr;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = falloff(ctx, cx, cy, radius, presence, s.softness);
+    ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+    ctx.globalCompositeOperation = 'source-over';
+    const x0 = Math.max(0, Math.floor(cx - radius)), y0 = Math.max(0, Math.floor(cy - radius));
+    const x1 = Math.min(canvas.width, Math.ceil(cx + radius)), y1 = Math.min(canvas.height, Math.ceil(cy + radius));
+    if (x1 <= x0 || y1 <= y0) return;
+    const w = x1 - x0, h = y1 - y0;
+    if (scratch.width < w || scratch.height < h) { scratch.width = Math.max(scratch.width, w); scratch.height = Math.max(scratch.height, h); }
+    scratchCtx.setTransform(1, 0, 0, 1, 0, 0);
+    scratchCtx.globalCompositeOperation = 'source-over';
+    scratchCtx.clearRect(0, 0, w, h);
+    for (const glyph of glyphs) blit(scratchCtx, glyph.dashes, glyph.offset.x, glyph.offset.y, x0, y0);
+    scratchCtx.globalCompositeOperation = 'destination-in';
+    scratchCtx.fillStyle = falloff(scratchCtx, cx - x0, cy - y0, radius, 1, s.softness);
+    scratchCtx.fillRect(0, 0, w, h);
+    scratchCtx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = presence;
+    ctx.drawImage(scratch, 0, 0, w, h, x0, y0, w, h);
+    ctx.globalAlpha = 1;
+  };
+
+  const crisp = value => (Math.round(value * dpr) + 0.5) / dpr;
+  const perimeterPoint = (distance, w, h) => {
+    let d = ((distance % (2 * (w + h))) + 2 * (w + h)) % (2 * (w + h));
+    if (d < w) return [frame.x1 + d, frame.y1, 0, -1];
+    d -= w; if (d < h) return [frame.x2, frame.y1 + d, 1, 0];
+    d -= h; if (d < w) return [frame.x2 - d, frame.y2, 0, 1];
+    d -= w; return [frame.x1, frame.y2 - d, -1, 0];
+  };
+
+  const drawSpecks = (s, a) => {
+    const w = frame.x2 - frame.x1, h = frame.y2 - frame.y1;
+    if (w < 2 || h < 2) return;
+    const perimeter = 2 * (w + h), seed = frame.index + 1, grid = 3;
+    for (let k = 0; k < s.specks; k++) {
+      const period = 0.5 + noise(seed, k, 11) * 1.2;
+      const t = pulse / period + noise(seed, k, 17);
+      const cycle = Math.floor(t), life = t - cycle;
+      if (life > 0.7) continue;
+      const [px, py, nx, ny] = perimeterPoint(noise(seed, k, cycle) * perimeter, w, h);
+      const pick = noise(seed, k, cycle, 2);
+      const size = pick < 0.46 ? 2 : pick < 0.7 ? 3 : pick < 0.84 ? 5 : pick < 0.94 ? 8 : 11;
+      const large = size >= 8;
+      const out = (large ? 9 : 4) + Math.floor(noise(seed, k, cycle, 1) * 5) * grid;
+      const x = frame.x1 + Math.round((px + nx * out - frame.x1) / grid) * grid;
+      const y = frame.y1 + Math.round((py + ny * out - frame.y1) / grid) * grid;
+      const tone = noise(seed, k, cycle, 3);
+      const blink = life < 0.06 || (life > 0.32 && life < 0.36) ? 0.35 : 1;
+      const alpha = a * (large ? 0.3 + 0.4 * tone : 0.3 + 0.6 * tone) * blink;
+      const left = Math.round(x - size / 2), top = Math.round(y - size / 2);
+      if (tone < 0.26 || (large && tone < 0.78)) {
+        ctx.strokeStyle = rgba(s.accentColor, alpha);
+        ctx.strokeRect(left + 0.5, top + 0.5, size, size);
+        if (large && tone > 0.5) { ctx.fillStyle = rgba(s.accentColor, alpha); ctx.fillRect(Math.round(x) - 1, Math.round(y) - 1, 2, 2); }
+      } else { ctx.fillStyle = rgba(s.accentColor, alpha); ctx.fillRect(left, top, size, size); }
+    }
+    for (let j = 0; j < 2; j++) {
+      const head = (pulse * 0.42 * s.speed + j * 0.5) * perimeter;
+      for (let i = 0; i < 4; i++) {
+        const [x, y] = perimeterPoint(head - i * 6, w, h);
+        const size = i === 0 ? 3 : 2;
+        ctx.fillStyle = rgba(s.accentColor, a * [0.95, 0.55, 0.32, 0.16][i]);
+        ctx.fillRect(Math.round(x - size / 2), Math.round(y - size / 2), size, size);
+      }
+    }
+  };
+
+  const drawFrame = s => {
+    const glyph = glyphs[frame.index];
+    if (!glyph || frame.alpha < 0.01) return;
+    const a = frame.alpha;
+    const x1 = crisp(frame.x1), y1 = crisp(frame.y1), x2 = crisp(frame.x2), y2 = crisp(frame.y2);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const moved = Math.hypot(glyph.offset.x, glyph.offset.y);
+    if (moved > 1) {
+      const hx = (glyph.box.x1 + glyph.box.x2) / 2, hy = (glyph.box.y1 + glyph.box.y2) / 2;
+      ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + glyph.offset.x, hy + glyph.offset.y);
+      ctx.setLineDash([3, 4]); ctx.lineWidth = 1; ctx.strokeStyle = rgba(s.accentColor, 0.45 * a); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.rect(Math.round(hx) - 2, Math.round(hy) - 2, 4, 4); ctx.fillStyle = rgba(s.accentColor, 0.7 * a); ctx.fill();
+    }
+    ctx.beginPath(); ctx.rect(x1, y1, x2 - x1, y2 - y1); ctx.lineWidth = 1; ctx.strokeStyle = rgba(s.accentColor, 0.5 * a); ctx.stroke();
+    ctx.beginPath();
+    for (const [cx, cy] of [[x1, y1], [x2, y1], [x2, y2], [x1, y2]]) ctx.rect(Math.round(cx) - 2, Math.round(cy) - 2, 5, 5);
+    ctx.fillStyle = rgba(s.accentColor, 0.95 * a); ctx.fill();
+    if (s.specks > 0) { ctx.lineWidth = 1; drawSpecks(s, a); }
+    if (!s.labels) return;
+    ctx.font = LABEL_FONT; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillStyle = rgba(s.accentColor, 0.62 * a);
+    const label = moved > 1 ? `${signed(Math.round(glyph.offset.x))}, ${signed(Math.round(-glyph.offset.y))}` : `${glyph.char}  ${Math.round(glyph.box.x2 - glyph.box.x1)} × ${Math.round(glyph.box.y2 - glyph.box.y1)}`;
+    ctx.fillText(label, Math.round(frame.x1), Math.round(frame.y1) - 7);
+  };
+
+  const tick = now => {
+    raf = 0;
+    const s = settings;
+    const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
+    last = now;
+    const view = ensureLayout(s);
+    const sweeping = s.sweep && !reducedMotion && !pointer.inside && dragging < 0;
+    if (sweeping) clock += dt * s.speed;
+    pulse += dt;
+    let targetX = pointer.x, targetY = pointer.y;
+    if (sweeping) { targetX = view.left + (view.right - view.left) * (0.5 - 0.5 * Math.cos(clock * 0.45)); targetY = view.top + (view.bottom - view.top) * (0.45 + 0.1 * Math.sin(clock * 0.8)); }
+    const active = pointer.inside || sweeping || dragging >= 0;
+    if (active && !placed) { lens.x = targetX; lens.y = targetY; }
+    if (active) { const lag = pointer.inside ? 0.05 : 0.22; lens.x = approach(lens.x, targetX, dt, lag); lens.y = approach(lens.y, targetY, dt, lag); }
+    placed = active;
+    presence = approach(presence, s.reveal === 'area' && active && dragging < 0 ? 1 : 0, dt, 0.16);
+
+    let moving = false;
+    glyphs.forEach((glyph, i) => {
+      if (i === dragging) {
+        glyph.offset.x = approach(glyph.offset.x, pointer.x - grab.x, dt, 0.03);
+        glyph.offset.y = approach(glyph.offset.y, pointer.y - grab.y, dt, 0.03);
+        glyph.velocity.x = 0; glyph.velocity.y = 0; moving = true; return;
+      }
+      const { offset, velocity } = glyph;
+      if (Math.abs(offset.x) < 0.05 && Math.abs(offset.y) < 0.05 && Math.hypot(velocity.x, velocity.y) < 0.5) { offset.x = 0; offset.y = 0; velocity.x = 0; velocity.y = 0; return; }
+      velocity.x += (-SPRING * offset.x - DAMPING * velocity.x) * dt;
+      velocity.y += (-SPRING * offset.y - DAMPING * velocity.y) * dt;
+      offset.x += velocity.x * dt; offset.y += velocity.y * dt; moving = true;
+    });
+
+    const focus = dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : -1;
+    if (focus >= 0 && s.selection) {
+      const glyph = glyphs[focus];
+      const bx1 = glyph.box.x1 + glyph.offset.x - 6, by1 = glyph.box.y1 + glyph.offset.y - 6;
+      const bx2 = glyph.box.x2 + glyph.offset.x + 6, by2 = glyph.box.y2 + glyph.offset.y + 6;
+      if (frame.index < 0 || frame.alpha < 0.02) { frame.x1 = bx1; frame.y1 = by1; frame.x2 = bx2; frame.y2 = by2; }
+      const glide = focus === dragging ? 0.02 : 0.08;
+      frame.x1 = approach(frame.x1, bx1, dt, glide); frame.y1 = approach(frame.y1, by1, dt, glide);
+      frame.x2 = approach(frame.x2, bx2, dt, glide); frame.y2 = approach(frame.y2, by2, dt, glide);
+      frame.index = focus;
+    }
+    frame.alpha = approach(frame.alpha, focus >= 0 && s.selection ? 1 : 0, dt, 0.1);
+
+    glyphs.forEach((glyph, i) => {
+      const target = s.reveal === 'letter' && i === focus && i !== dragging ? 1 : 0;
+      glyph.outline = approach(glyph.outline, target, dt, 0.09);
+      if (Math.abs(glyph.outline - target) > 0.002) moving = true; else glyph.outline = target;
+    });
+
+    if (s.draggable) container.style.cursor = dragging >= 0 ? 'grabbing' : focus >= 0 && pointer.inside ? 'grab' : '';
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const glyph of glyphs) {
+      const moved = Math.hypot(glyph.offset.x, glyph.offset.y);
+      if (moved > 1) { ctx.globalAlpha = Math.min(1, moved / 24) * 0.55; blit(ctx, glyph.dashes, 0, 0, 0, 0); ctx.globalAlpha = 1; }
+    }
+    for (const glyph of glyphs) {
+      if (glyph.outline < 0.999) { ctx.globalAlpha = 1 - glyph.outline; blit(ctx, glyph.fill, glyph.offset.x, glyph.offset.y, 0, 0); }
+      if (glyph.outline > 0.001) { ctx.globalAlpha = glyph.outline; blit(ctx, glyph.dashes, glyph.offset.x, glyph.offset.y, 0, 0); }
+      ctx.globalAlpha = 1;
+    }
+    if (presence > 0.001) drawReveal(s);
+    drawFrame(s);
+
+    const settling = moving || Math.abs(presence - (s.reveal === 'area' && active && dragging < 0 ? 1 : 0)) > 0.002 || (frame.alpha > 0.01 && frame.alpha < 0.99);
+    if ((active || settling) && visible && alive) raf = requestAnimationFrame(tick);
+  };
+
+  function wake() { if (raf || !visible || !alive) return; last = performance.now(); raf = requestAnimationFrame(tick); }
+
+  const resize = () => {
+    width = Math.max(1, container.clientWidth); height = Math.max(1, container.clientHeight);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+    layoutKey = ''; wake();
+  };
+
+  const locate = e => { const rect = container.getBoundingClientRect(); pointer.x = e.clientX - rect.left; pointer.y = e.clientY - rect.top; };
+  const onMove = e => { locate(e); pointer.inside = true; wake(); };
+  const onLeave = () => { if (dragging >= 0) return; pointer.inside = false; wake(); };
+  const onDown = e => {
+    locate(e); pointer.inside = true;
+    const s = settings;
+    if (s?.draggable && (e.pointerType !== 'mouse' || e.button === 0)) {
+      const index = glyphAt(pointer.x, pointer.y);
+      if (index >= 0) { dragging = index; grab.x = pointer.x - glyphs[index].offset.x; grab.y = pointer.y - glyphs[index].offset.y; container.setPointerCapture?.(e.pointerId); }
+    }
+    wake();
+  };
+  const onUp = e => {
+    if (dragging >= 0) {
+      dragging = -1; container.releasePointerCapture?.(e.pointerId);
+      const rect = container.getBoundingClientRect();
+      pointer.inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+    }
+    wake();
+  };
+
+  container.addEventListener('pointermove', onMove, { passive: true });
+  container.addEventListener('pointerenter', onMove, { passive: true });
+  container.addEventListener('pointerdown', onDown, { passive: true });
+  container.addEventListener('pointerup', onUp, { passive: true });
+  container.addEventListener('pointercancel', onUp, { passive: true });
+  container.addEventListener('pointerleave', onLeave, { passive: true });
+
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(container);
+  const intersectionObserver = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; wake(); });
+  intersectionObserver.observe(container);
+  if (document.fonts) document.fonts.ready.then(refreshFonts, refreshFonts);
+
+  resize();
+
+  return {
+    update(patch) { Object.assign(settings, patch); wake(); },
+    destroy() {
+      alive = false; cancelAnimationFrame(raf);
+      resizeObserver.disconnect(); intersectionObserver.disconnect();
+      container.removeEventListener('pointermove', onMove);
+      container.removeEventListener('pointerenter', onMove);
+      container.removeEventListener('pointerdown', onDown);
+      container.removeEventListener('pointerup', onUp);
+      container.removeEventListener('pointercancel', onUp);
+      container.removeEventListener('pointerleave', onLeave);
+    }
+  };
+}
+
+
+createTechText(document.getElementById('nameText'), {
+  text: 'Leone Miguel',
+  fontFamily: "'JetBrains Mono', monospace",
+  fontWeight: 700,
+  fontSize: 100,
+  reveal: 'letter',
+  color: '#111111',
+  accentColor: '#555555',
+  dashLength: 4,
+  dashGap: 2,
+  strokeWidth: 1.5,
+  specks: 12,
+  sweep: true,
+  speed: 0.8
+});
+
+// face looks toward the cursor using 8 directional photos
+const cursor=document.querySelector('.cursor'),photo=document.querySelector('#photoWrap'),face=document.getElementById('face');
+const DIRS=['e','se','s','sw','w','nw','n','ne'];
+let lastDir='c';
+if(face){
+ face.addEventListener('error',()=>photo.classList.add('noimg'));
+ face.addEventListener('load',()=>photo.classList.remove('noimg'));
+}
+document.addEventListener('mousemove',e=>{
+ if(cursor){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'}
+ if(!photo||!face)return;
+ const r=photo.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+ const dist=Math.hypot(dx,dy),centerRadius=Math.min(r.width,r.height)*.16;
+ let dir;
+ if(dist<centerRadius){dir='c';}
+ else{let ang=Math.atan2(dy,dx)*180/Math.PI; if(ang<0)ang+=360; dir=DIRS[Math.round(ang/45)%8];}
+ if(dir!==lastDir){lastDir=dir;face.src=`images/face-${dir}.jpg`;}
+});
+document.querySelectorAll('a,.btn,.olang,.pcard').forEach(x=>{
+ x.onmouseenter=()=>{if(cursor){cursor.style.width='34px';cursor.style.height='34px'}};
+ x.onmouseleave=()=>{if(cursor){cursor.style.width='18px';cursor.style.height='18px'}};
+});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
+
+// typewriter — edit this list to change the roles that cycle in the hero badge
+const roles=['AI & SOFTWARE DEVELOPER','AUTOMATION BUILDER','ROBOTICS ENGINEER','LOCAL-FIRST AI'];
+const typedEl=document.getElementById('typed');
+(function typewriter(){
+ let r=0,i=0,deleting=false;
+ function step(){
+  const word=roles[r];
+  i+=deleting?-1:1;
+  typedEl.textContent=word.slice(0,i);
+  let delay=deleting?35:70;
+  if(!deleting&&i===word.length){deleting=true;delay=1400;}
+  else if(deleting&&i===0){deleting=false;r=(r+1)%roles.length;delay=300;}
+  setTimeout(step,delay);
+ }
+ step();
+})();
+
+// project carousel
+(function(){
+const cards=[...document.querySelectorAll('#pstage .pcard')],n=cards.length;
+let idx=0;
+function layout(){
+ cards.forEach((c,i)=>{
+  let d=i-idx; if(d>n/2)d-=n; if(d<-n/2)d+=n;
+  if(d===0){c.style.transform='translateX(0) scale(1) rotate(0)';c.style.opacity='1';c.style.zIndex=3;c.style.pointerEvents='auto';}
+  else if(Math.abs(d)===1){const s=d>0?1:-1;c.style.transform=`translateX(${s*62}%) scale(.88) rotate(${s*7}deg)`;c.style.opacity='.5';c.style.zIndex=2;c.style.pointerEvents='auto';}
+  else{c.style.transform='translateX(0) scale(.8)';c.style.opacity='0';c.style.zIndex=1;c.style.pointerEvents='none';}
+ });
+ document.getElementById('pindex').textContent=(idx+1)+' / '+n;
+}
+document.getElementById('pnext').onclick=()=>{idx=(idx+1)%n;layout();};
+document.getElementById('pprev').onclick=()=>{idx=(idx-1+n)%n;layout();};
+cards.forEach((c,i)=>c.addEventListener('click',()=>{if(i!==idx){idx=i;layout();}}));
+layout();
+})();
+
+// ---- Skills gallery ----
+// Each skill has its own dedicated PNG in /images (no sharing with the project icons or face photos).
+(function(){
+  const skills = [
+    { title:'Software Engineering', subtitle:'Websites • Apps • Systems',        media:'images/skill-software.png' },
+    { title:'AI Development',       subtitle:'Agents • Automation • Local AI',   media:'images/skill-ai.png' },
+    { title:'Firmware Engineer',    subtitle:'Embedded • Hardware • Control',    media:'images/skill-firmware.png' },
+    { title:'Videography',          subtitle:'Camera • Composition • Visuals',   media:'images/skill-videography.png' },
+    { title:'Social Skills',        subtitle:'Communication • Collaboration • Ticket Closing',    media:'images/social-skills.png' }
+  ];
+
+  const stage=document.getElementById('fcStage');
+  const dots=document.getElementById('fcDots');
+  const counter=document.getElementById('fcCounter');
+  const prev=document.getElementById('fcPrev');
+  const next=document.getElementById('fcNext');
+  if(!stage) return;
+
+  let index=0, downX=0, lastX=0, dragging=false, wheelLock=false;
+
+  skills.forEach((item,i)=>{
+    const card=document.createElement('article');
+    card.className='fc-card';
+    card.dataset.index=i;
+    card.innerHTML=`
+      <div class="fc-card-media"></div>
+      <div class="fc-card-content">
+        <div class="fc-number">0${i+1} / 05</div>
+        <div class="fc-title">${item.title}</div>
+        <div class="fc-subtitle">${item.subtitle}</div>
+      </div>`;
+
+    const media=card.querySelector('.fc-card-media');
+    const img=document.createElement('img');
+    img.src=item.media;
+    img.alt=item.title;
+    img.draggable=false;
+    const missing=document.createElement('div');
+    missing.className='fc-missing';
+    missing.textContent='ADD '+item.media;
+    img.onerror=()=>media.classList.add('noimg');
+    media.appendChild(img);
+    media.appendChild(missing);
+
+    card.addEventListener('click',()=>{
+      const clicked=Number(card.dataset.index);
+      if(clicked!==index){index=clicked;render();}
+    });
+    stage.appendChild(card);
+
+    const dot=document.createElement('span');
+    dot.className='fc-dot';
+    dot.addEventListener('click',()=>{index=i;render();});
+    dots.appendChild(dot);
+  });
+
+  function wrap(n){return (n+skills.length)%skills.length;}
+  function render(){
+    const cards=[...stage.children];
+    cards.forEach((card,i)=>{
+      let d=i-index;
+      if(d>skills.length/2)d-=skills.length;
+      if(d<-skills.length/2)d+=skills.length;
+      const abs=Math.abs(d);
+      if(d===0){
+        card.className='fc-card active';
+        card.style.transform='translate3d(0,0,110px) rotateY(0deg) scale(1)';
+        card.style.opacity='1';
+        card.style.zIndex='5';
+        card.style.filter='none';
+      }else if(abs===1){
+        const side=d>0?1:-1;
+        card.className='fc-card side';
+        card.style.transform=`translate3d(${side*70}%,${abs*10}px,-30px) rotateY(${side*-16}deg) scale(.84)`;
+        card.style.opacity='.68';
+        card.style.zIndex='4';
+        card.style.filter='saturate(.65)';
+      }else if(abs===2){
+        const side=d>0?1:-1;
+        card.className='fc-card side';
+        card.style.transform=`translate3d(${side*126}%,${abs*15}px,-120px) rotateY(${side*-28}deg) scale(.67)`;
+        card.style.opacity='.22';
+        card.style.zIndex='3';
+        card.style.filter='grayscale(1)';
+      }else{
+        card.className='fc-card hidden';
+        card.style.transform=`translate3d(${d>0?170:-170}%,0,-220px) scale(.5)`;
+        card.style.opacity='0';
+        card.style.zIndex='1';
+      }
+    });
+
+    dots.querySelectorAll('.fc-dot').forEach((d,i)=>d.classList.toggle('active',i===index));
+    counter.textContent=`0${index+1} / 05`;
+  }
+
+  function move(step){index=wrap(index+step);render();}
+  prev.onclick=()=>move(-1);
+  next.onclick=()=>move(1);
+
+  stage.addEventListener('pointerdown',e=>{
+    dragging=true; stage.classList.add('dragging'); downX=lastX=e.clientX; stage.setPointerCapture?.(e.pointerId);
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-lastX; lastX=e.clientX;
+    if(Math.abs(e.clientX-downX)>28){move(dx<0?1:-1);downX=e.clientX;}
+  });
+  const endDrag=()=>{dragging=false;stage.classList.remove('dragging');};
+  stage.addEventListener('pointerup',endDrag);
+  stage.addEventListener('pointercancel',endDrag);
+  stage.addEventListener('mouseleave',endDrag);
+
+  stage.addEventListener('wheel',e=>{
+    if(Math.abs(e.deltaY)<8 && Math.abs(e.deltaX)<8)return;
+    e.preventDefault();
+    if(wheelLock)return;
+    wheelLock=true;
+    move((e.deltaY||e.deltaX)>0?1:-1);
+    setTimeout(()=>wheelLock=false,420);
+  },{passive:false});
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft')move(-1);
+    if(e.key==='ArrowRight')move(1);
+  });
+
+  render();
+})();
+</script>
+</body></html>
