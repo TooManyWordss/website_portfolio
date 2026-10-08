@@ -109,26 +109,33 @@ section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom
 .stackCol h3{font-family:var(--mono);font-size:20px;letter-spacing:-.01em;margin-bottom:18px}
 .stackCol .tags{display:flex;gap:7px;flex-wrap:wrap}.stackCol .tag{font-family:var(--mono);font-size:11px;color:#bbb;border:1px solid #333;border-radius:99px;padding:7px 11px;transition:.2s}
 .stackCol .tag:hover{border-color:var(--orange);color:#fff}
+.stackCol .tags{gap:9px}.stackCol .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 13px 8px 10px;font-size:12px}
+.stackCol .tag img{width:18px;height:18px;object-fit:contain;flex:none}.stackCol .tag img.invert{filter:invert(1)}.stackCol .tag img.lift{filter:brightness(2.4) saturate(1.3)}
+.stackCol .tag .glyph{font-style:normal;white-space:nowrap;font-weight:700;font-size:11px;color:var(--orange);width:18px;text-align:center}
 .stack.two{grid-template-columns:repeat(2,1fr)}.stack.one{grid-template-columns:1fr}
 @media(max-width:800px){.stack,.stack.two{grid-template-columns:1fr}}
-.timeline .time{display:grid;grid-template-columns:110px 1fr;gap:26px;padding:24px 0;border-bottom:1px solid var(--line)}
-.timeline .time:last-child{border-bottom:none}
-.time .age{font-family:var(--mono);color:var(--orange);font-weight:700}
-.time h3{font-size:20px;margin-bottom:6px}.time p{color:#bbb;line-height:1.6;font-size:14px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:var(--line)}
+.timeline .time{position:relative;padding-top:30px}
+.timeline .time::before{content:"";position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid #555;box-sizing:border-box}
+.timeline .time:last-child::before{background:var(--orange);border-color:var(--orange);box-shadow:0 0 0 4px #ffffff14}
+.time .age{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;color:#888;margin-bottom:10px}
+.time h3{font-size:16px;line-height:1.35;letter-spacing:-.01em;margin-bottom:8px}.time p{color:#999;line-height:1.55;font-size:13px}
+@media(max-width:800px){.timeline{grid-template-columns:1fr;gap:24px}.timeline::before{top:4px;bottom:4px;left:5px;right:auto;width:1px;height:auto}.timeline .time{padding:0 0 0 30px}.timeline .time::before{top:2px}}
 .contact{padding:55px;border:1px solid #2a2a2a;border-radius:24px;background:linear-gradient(135deg,#161616,#0b0b0b)}
 .contact h2{font-family:var(--mono);font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.01em;margin-top:10px}
 .contact p{max-width:600px;color:#bbb;line-height:1.6;margin:22px 0 28px}
 footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);display:flex;justify-content:space-between}
 .reveal{opacity:0;transform:translateY(25px);transition:.7s}.show{opacity:1;transform:none}
 .cursor{position:fixed;width:18px;height:18px;border:1px solid var(--orange);border-radius:50%;pointer-events:none;z-index:100;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:.15s}
-@media(max-width:800px){.links{display:none}.heroGrid,.about{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.timeline .time{grid-template-columns:1fr}section{padding:80px 0}.cursor{display:none}.dots{display:none}}
+@media(max-width:800px){.links{display:none}.heroGrid,.about{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}section{padding:80px 0}.cursor{display:none}.dots{display:none}}
 </style>
 </head>
 <body>
 <canvas id="universe"></canvas>
 <div class="nebula n1"></div><div class="nebula n2"></div><div class="nebula n3"></div>
 <div class="dots d1"></div><div class="dots d2"></div>
-<nav><div class="wrap nav"><a class="logo" href="#home">LEONE<i>.</i></a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#offer">Skills</a><a href="#stack">Stack</a><a href="#aitools">AI Tools</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div></div></nav>
+<nav><div class="wrap nav"><a class="logo" href="#home">LEONE<i>.</i></a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#offer">Skills</a><a href="#stack">Stack</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div></div></nav>
 
 <main>
 <section class="hero" id="home"><div class="wrap heroGrid">
@@ -151,7 +158,7 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 <div class="badge"><span id="typed"></span><span class="caret">|</span></div>
 <div id="nameText"></div>
 <p class="lead">I'm an <b>AI & software engineer.</b> I build practical systems — from AI assistants to point-of-sale and kiosk software — and I ship new projects one after another.</p>
-<div class="social mono"><a href="#">github ↗</a><a href="https://www.linkedin.com/in/lyon-atlas-222624430/">linkedin ↗</a><a href="https://www.instagram.com/ly1_alt?stkn=MWtrbGc3Zms2ZnJybA%3D%3D&utm_source=qr">Instagram ↗</a></div>
+<div class="social mono"><a href="https://github.com/TooManyWordss" target="_blank" rel="noopener">github ↗</a><a href="https://www.linkedin.com/in/lyon-atlas-222624430/" target="_blank" rel="noopener">linkedin ↗</a><a href="https://www.instagram.com/ly1_alt/" target="_blank" rel="noopener">Instagram ↗</a></div>
 <div class="buttons"><a class="btn primary" href="#projects">View my work ↗</a><a class="btn" href="#contact">Start a project</a></div>
 </div>
 
@@ -167,22 +174,20 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 <section id="about"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>01</b> / About</div><h2>Curious. Adaptable.</h2></div><div class="about"><p>I enjoy building technology, solving problems and creating media — turning rough ideas into things people actually use.</p></div></div></section>
 
 <!-- PROJECTS ("Browse my builds") — icon images used here:
-       images/project-pos.jpg
-       images/project-scheduler.jpg
        images/project-kiosk.jpg
-       images/project-localai.jpg -->
+     (POS System, AI Scheduler, J.A.R.V.I.S and Outlier Studio use inline SVG logos) -->
 <section id="projects"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>02</b> / Selected work</div><h2>Browse my builds.</h2></div>
 
 <div class="pstage" id="pstage">
 <article class="pcard" data-i="0">
   <div class="pills"><span class="pill">RETAIL / BUSINESS</span></div>
-  <div class="pTop"><div class="picon"><img src="images/project-pos.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">P</span></div><h3>POS System</h3></div>
+  <div class="pTop"><div class="picon"><svg viewBox="0 0 44 44" width="100%" height="100%" aria-label="POS System logo"><path d="M15 21V8l2.3 1.6L19.7 8 22 9.6 24.3 8l2.4 1.6L29 8v13" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M18 13.5h8M18 17h5" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/><rect x="8" y="21" width="28" height="15" rx="3" fill="#fff"/><rect x="11.5" y="24" width="10" height="3.5" rx="1" fill="#f59e0b"/><g fill="#1f1f1f"><rect x="25" y="24" width="3" height="3" rx=".6"/><rect x="29.5" y="24" width="3" height="3" rx=".6"/><rect x="11.5" y="30" width="3" height="3" rx=".6"/><rect x="16" y="30" width="3" height="3" rx=".6"/><rect x="20.5" y="30" width="3" height="3" rx=".6"/><rect x="25" y="30" width="7.5" height="3" rx=".6"/></g></svg></div><h3>POS System</h3></div>
   <p>A point-of-sale system built for small businesses — handling transactions, inventory and daily sales tracking in one interface.</p>
   <div class="tags"><span class="tag">POS</span><span class="tag">Database</span><span class="tag">UI</span></div>
 </article>
 <article class="pcard" data-i="1">
   <div class="pills"><span class="pill">AI / AUTOMATION</span></div>
-  <div class="pTop"><div class="picon"><img src="images/project-scheduler.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">A</span></div><h3>AI Scheduler</h3></div>
+  <div class="pTop"><div class="picon"><svg viewBox="0 0 44 44" width="100%" height="100%" aria-label="AI Scheduler logo"><rect x="7" y="10" width="26" height="25" rx="4" fill="none" stroke="#fff" stroke-width="2"/><path d="M7 17h26" stroke="#fff" stroke-width="2"/><path d="M13 7v6M27 7v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><g fill="#fff"><rect x="11" y="21" width="3.5" height="3.5" rx=".8"/><rect x="16.5" y="21" width="3.5" height="3.5" rx=".8"/><rect x="22" y="21" width="3.5" height="3.5" rx=".8" fill="#a78bfa"/><rect x="11" y="27" width="3.5" height="3.5" rx=".8"/><rect x="16.5" y="27" width="3.5" height="3.5" rx=".8"/></g><path d="M33 22c.6 3.4 1.9 4.7 5.3 5.3-3.4.6-4.7 1.9-5.3 5.3-.6-3.4-1.9-4.7-5.3-5.3 3.4-.6 4.7-1.9 5.3-5.3z" fill="#a78bfa" stroke="#1f1f1f" stroke-width="1.6" stroke-linejoin="round" paint-order="stroke"/></svg></div><h3>AI Scheduler</h3></div>
   <p>An AI business assistant designed around the way people already communicate, helping users manage schedules and business operations through chat.</p>
   <div class="tags"><span class="tag">AI</span><span class="tag">Automation</span><span class="tag">Python</span></div>
 </article>
@@ -195,13 +200,19 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 </article>
 <article class="pcard" data-i="3">
   <div class="pills"><span class="pill">PERSONAL PROJECT</span></div>
-  <div class="pTop"><div class="picon"><img src="images/project-localai.jpg" alt="" onerror="this.parentElement.classList.add('noimg')"><span class="pfallback">L</span></div><h3>Local AI Assistant</h3></div>
+  <div class="pTop"><div class="picon"><svg viewBox="0 0 44 44" width="100%" height="100%" aria-label="J.A.R.V.I.S logo"><defs><radialGradient id="jvCore"><stop offset="0" stop-color="#e0f7ff"/><stop offset=".45" stop-color="#38bdf8"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient></defs><circle cx="22" cy="22" r="20" fill="none" stroke="#38bdf8" stroke-opacity=".35" stroke-width=".8"/><circle cx="22" cy="22" r="17.5" fill="none" stroke="#38bdf8" stroke-width="1.6" stroke-dasharray="2 1.6" stroke-opacity=".8"/><circle cx="22" cy="22" r="14.5" fill="none" stroke="#7dd3fc" stroke-width="1.4" stroke-dasharray="17 5.8" transform="rotate(-20 22 22)"/><g stroke="#7dd3fc" stroke-width=".6" stroke-opacity=".75"><line x1="22.0" y1="12.0" x2="29.1" y2="14.9"/><line x1="22.0" y1="12.0" x2="24.5" y2="17.7"/><line x1="29.1" y1="14.9" x2="32.0" y2="22.0"/><line x1="29.1" y1="14.9" x2="24.5" y2="17.7"/><line x1="32.0" y1="22.0" x2="29.1" y2="29.1"/><line x1="32.0" y1="22.0" x2="24.5" y2="17.7"/><line x1="29.1" y1="29.1" x2="22.0" y2="32.0"/><line x1="29.1" y1="29.1" x2="24.5" y2="26.3"/><line x1="22.0" y1="32.0" x2="14.9" y2="29.1"/><line x1="22.0" y1="32.0" x2="24.5" y2="26.3"/><line x1="14.9" y1="29.1" x2="12.0" y2="22.0"/><line x1="14.9" y1="29.1" x2="17.0" y2="22.0"/><line x1="12.0" y1="22.0" x2="14.9" y2="14.9"/><line x1="12.0" y1="22.0" x2="17.0" y2="22.0"/><line x1="14.9" y1="14.9" x2="22.0" y2="12.0"/><line x1="14.9" y1="14.9" x2="17.0" y2="22.0"/><line x1="24.5" y1="17.7" x2="24.5" y2="26.3"/><line x1="24.5" y1="17.7" x2="22.0" y2="22.0"/><line x1="24.5" y1="26.3" x2="17.0" y2="22.0"/><line x1="24.5" y1="26.3" x2="22.0" y2="22.0"/><line x1="17.0" y1="22.0" x2="24.5" y2="17.7"/><line x1="17.0" y1="22.0" x2="22.0" y2="22.0"/></g><g fill="#bae6fd"><circle cx="22.0" cy="12.0" r="1.1"/><circle cx="29.1" cy="14.9" r="1.1"/><circle cx="32.0" cy="22.0" r="1.1"/><circle cx="29.1" cy="29.1" r="1.1"/><circle cx="22.0" cy="32.0" r="1.1"/><circle cx="14.9" cy="29.1" r="1.1"/><circle cx="12.0" cy="22.0" r="1.1"/><circle cx="14.9" cy="14.9" r="1.1"/><circle cx="24.5" cy="17.7" r="1.1"/><circle cx="24.5" cy="26.3" r="1.1"/><circle cx="17.0" cy="22.0" r="1.1"/></g><circle cx="22" cy="22" r="5.5" fill="url(#jvCore)"/><circle cx="22" cy="22" r="1.8" fill="#fff"/></svg></div><h3>Local AI Assistant</h3></div>
   <div class="psub">J.A.R.V.I.S</div>
   <p>A local, on-device AI assistant for my own computer — runs without sending data to the cloud, built to help with everyday tasks and automation.</p>
   <div class="tags"><span class="tag">AI</span><span class="tag">Local-first</span><span class="tag">Python</span></div>
 </article>
+<article class="pcard" data-i="4">
+  <div class="pills"><span class="pill">AI / ANALYTICS</span></div>
+  <div class="pTop"><div class="picon"><svg viewBox="0 0 44 44" width="100%" height="100%" aria-label="Outlier Studio logo"><g transform="skewX(-22) translate(13 3)"><rect x="6" y="25" width="7" height="11" fill="#fff"/><rect x="15.5" y="17" width="7" height="19" fill="#22c55e"/><rect x="25" y="9" width="7" height="27" fill="#fff"/></g></svg></div><h3>Outlier Studio</h3></div>
+  <p>A website that analyzes creators' videos and fully breaks down their hooks — alongside retention, pacing, engagement and other key stats that show why a video performs.</p>
+  <div class="tags"><span class="tag">AI</span><span class="tag">Web App</span><span class="tag">Analytics</span></div>
+</article>
 </div>
-<div class="pnav mono"><button id="pprev">←</button><span id="pindex">1 / 4</span><button id="pnext">→</button></div>
+<div class="pnav mono"><button id="pprev">←</button><span id="pindex">1 / 5</span><button id="pnext">→</button></div>
 
 </div></section>
 
@@ -231,34 +242,43 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 
 <!-- STACKS KNOWN — add / remove tools by editing the <span class="tag"> items -->
 <section id="stack"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>04</b> / Stack</div><h2>Stacks known.</h2></div>
-<div class="stack two">
+<div class="stack">
 <div class="stackCol"><div class="eyebrow">// client</div><h3>Front-End</h3><div class="tags">
-  <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Tailwind CSS</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy" onerror="this.remove()">HTML</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy" onerror="this.remove()">CSS</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy" onerror="this.remove()">JavaScript</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.remove()">TypeScript</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" loading="lazy" onerror="this.remove()">React</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="" loading="lazy" onerror="this.remove()">Tailwind CSS</span>
 </div></div>
 <div class="stackCol"><div class="eyebrow">// server</div><h3>Back-End</h3><div class="tags">
-  <span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span><span class="tag">MySQL</span><span class="tag">SQLite</span><span class="tag">Firebase</span><span class="tag">C / C++</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy" onerror="this.remove()">Python</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.remove()">Node.js</span>
+  <span class="tag"><img class="invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="" loading="lazy" onerror="this.remove()">Express</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="" loading="lazy" onerror="this.remove()">FastAPI</span>
+  <span class="tag"><i class="glyph">{ }</i>REST APIs</span>
+  <span class="tag"><img class="lift" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy" onerror="this.remove()">MySQL</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="" loading="lazy" onerror="this.remove()">SQLite</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" alt="" loading="lazy" onerror="this.remove()">Firebase</span>
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy" onerror="this.remove()">C / C++</span>
 </div></div>
-</div>
-</div></section>
-
-<!-- AI TOOLS — add / remove tools by editing the <span class="tag"> items -->
-<section id="aitools"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>05</b> / AI Development</div><h2>Tools I use for AI.</h2></div>
-<div class="stack one">
-<div class="stackCol"><div class="eyebrow">// intelligence</div><h3>AI Development</h3><div class="tags">
-  <span class="tag">n8n</span><span class="tag">Cursor</span>
+<div class="stackCol"><div class="eyebrow">// workflow</div><h3>Tools Used</h3><div class="tags">
+  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" loading="lazy" onerror="this.remove()">VS Code</span>
+  <span class="tag"><img src="https://cdn.simpleicons.org/cursor/dddddd" alt="" loading="lazy" onerror="this.remove()">Cursor</span>
+  <span class="tag"><img src="https://cdn.simpleicons.org/n8n" alt="" loading="lazy" onerror="this.remove()">n8n</span>
 </div></div>
 </div>
 </div></section>
 
 <!-- JOURNEY — edit ages / titles / descriptions here -->
-<section id="journey"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>06</b> / Journey</div><h2>Keep building.</h2></div><div class="timeline">
+<section id="journey"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>05</b> / Journey</div><h2>Keep building.</h2></div><div class="timeline">
 <div class="time"><span class="age">AGE 15</span><div><h3>Started Coding and Software Development</h3><p>First steps into programming — learning the fundamentals and writing my first projects such as Applications and Miniature softwares.</p></div></div>
 <div class="time"><span class="age">AGE 16</span><div><h3>Joined Multiple Local Robotics and Coding Tournaments</h3><p>Competed in local robotics and coding events, building under real time pressure. And even winning.</p></div></div>
 <div class="time"><span class="age">AGE 17</span><div><h3>Developed Softwares and Systems</h3><p>Built kiosks, websites and robots — taking projects from idea to working system.</p></div></div>
 <div class="time"><span class="age">AGE 18</span><div><h3>Taking My Skills to a Professional Stage</h3><p>Applying everything learned so far to real, professional-level work.</p></div></div>
 </div></div></section>
 
-<section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>07</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
+<section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>06</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
 </main>
 <footer class="wrap"><span>© 2026 Leone</span><span>Built with curiosity.</span></footer>
 
