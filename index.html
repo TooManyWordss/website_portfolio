@@ -111,6 +111,17 @@ section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom
 .stackCol .tag:hover{border-color:var(--orange);color:#fff}
 .stackCol .tags{gap:9px}.stackCol .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 13px 8px 10px;font-size:12px}
 .stackCol .tag img{width:18px;height:18px;object-fit:contain;flex:none}.stackCol .tag img.invert{filter:invert(1)}.stackCol .tag img.lift{filter:brightness(2.4) saturate(1.3)}
+.stackCol .tag{background:none;cursor:pointer}.stackCol .tag:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.tmodal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:16px;background:#000000b3;backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
+.tmodal.open{opacity:1;pointer-events:auto}
+.tmodal-card{position:relative;width:min(360px,100%);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:34px 28px 28px;text-align:center;box-shadow:0 30px 90px #000000b0;transform:scale(.9) translateY(12px);transition:transform .35s cubic-bezier(.2,.9,.25,1.2)}
+.tmodal.open .tmodal-card{transform:none}
+.tmodal-logo{width:84px;height:84px;margin:0 auto 18px;border-radius:20px;background:#1a1a1a;border:1px solid var(--line);display:grid;place-items:center}
+.tmodal-logo img{width:48px;height:48px;object-fit:contain}.tmodal-logo img.invert{filter:invert(1)}.tmodal-logo img.lift{filter:brightness(2.4) saturate(1.3)}
+.tmodal-cat{font:700 10px var(--mono);letter-spacing:.16em;color:#888;text-transform:uppercase}
+.tmodal-name{font:700 24px var(--mono);margin:6px 0 12px}
+.tmodal-desc{color:#bbb;font-size:14px;line-height:1.6}
+.tmodal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;color:#aaa;font-size:16px;cursor:pointer}.tmodal-close:hover{color:#fff;border-color:#666}
 .stackCol .tag .glyph{font-style:normal;white-space:nowrap;font-weight:700;font-size:11px;color:var(--orange);width:18px;text-align:center}
 .stack.two{grid-template-columns:repeat(2,1fr)}.stack.one{grid-template-columns:1fr}
 @media(max-width:800px){.stack,.stack.two{grid-template-columns:1fr}}
@@ -240,32 +251,34 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 </div>
 </div></section>
 
-<!-- STACKS KNOWN — add / remove tools by editing the <span class="tag"> items -->
+<!-- STACKS KNOWN — add / remove tools by editing the <button class="tag"> items (data-desc = pop-up text) -->
 <section id="stack"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>04</b> / Stack</div><h2>Stacks known.</h2></div>
 <div class="stack">
 <div class="stackCol"><div class="eyebrow">// client</div><h3>Front-End</h3><div class="tags">
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy" onerror="this.remove()">HTML</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy" onerror="this.remove()">CSS</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy" onerror="this.remove()">JavaScript</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.remove()">TypeScript</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="" loading="lazy" onerror="this.remove()">Tailwind CSS</span>
+  <button type="button" class="tag" data-desc="The markup language that gives every web page its structure."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" loading="lazy" onerror="this.remove()">HTML</button>
+  <button type="button" class="tag" data-desc="Styles the web — layout, color, typography and animation."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" loading="lazy" onerror="this.remove()">CSS</button>
+  <button type="button" class="tag" data-desc="The language of the web, powering interactive front-ends and Node.js back-ends."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" loading="lazy" onerror="this.remove()">JavaScript</button>
+  <button type="button" class="tag" data-desc="JavaScript with static types, catching bugs before the code ever runs."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" loading="lazy" onerror="this.remove()">TypeScript</button>
+  <button type="button" class="tag" data-desc="A utility-first CSS framework for building custom designs fast."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="" loading="lazy" onerror="this.remove()">Tailwind CSS</button>
 </div></div>
 <div class="stackCol"><div class="eyebrow">// server</div><h3>Back-End</h3><div class="tags">
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy" onerror="this.remove()">Python</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.remove()">Node.js</span>
-  <span class="tag"><img class="invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="" loading="lazy" onerror="this.remove()">Express</span>
-  <span class="tag"><img class="lift" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy" onerror="this.remove()">MySQL</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="" loading="lazy" onerror="this.remove()">SQLite</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" alt="" loading="lazy" onerror="this.remove()">Firebase</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy" onerror="this.remove()">C / C++</span>
+  <button type="button" class="tag" data-desc="A versatile language for AI, automation, scripting and back-end services."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" loading="lazy" onerror="this.remove()">Python</button>
+  <button type="button" class="tag" data-desc="A JavaScript runtime for building fast, scalable server-side apps."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="" loading="lazy" onerror="this.remove()">Node.js</button>
+  <button type="button" class="tag" data-desc="A minimal Node.js framework for building web servers and APIs."><img class="invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="" loading="lazy" onerror="this.remove()">Express</button>
+  <button type="button" class="tag" data-desc="A widely used relational database for structured, reliable data."><img class="lift" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="" loading="lazy" onerror="this.remove()">MySQL</button>
+  <button type="button" class="tag" data-desc="A lightweight, file-based SQL database — ideal for apps, kiosks and local tools."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="" loading="lazy" onerror="this.remove()">SQLite</button>
+  <button type="button" class="tag" data-desc="Google's platform for real-time databases, authentication and hosting."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" alt="" loading="lazy" onerror="this.remove()">Firebase</button>
+  <button type="button" class="tag" data-desc="Low-level languages for performance-critical software, firmware and embedded systems."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy" onerror="this.remove()">C / C++</button>
 </div></div>
 <div class="stackCol"><div class="eyebrow">// workflow</div><h3>Tools Used</h3><div class="tags">
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" loading="lazy" onerror="this.remove()">VS Code</span>
-  <span class="tag"><img src="https://cdn.simpleicons.org/cursor/dddddd" alt="" loading="lazy" onerror="this.remove()">Cursor</span>
-  <span class="tag"><img src="https://cdn.simpleicons.org/n8n" alt="" loading="lazy" onerror="this.remove()">n8n</span>
-  <span class="tag"><img class="invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" loading="lazy" onerror="this.remove()">GitHub</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="" loading="lazy" onerror="this.remove()">PyTorch</span>
-  <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy" onerror="this.remove()">TensorFlow</span>
+  <button type="button" class="tag" data-desc="A lightweight, extensible code editor for virtually any language."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="" loading="lazy" onerror="this.remove()">VS Code</button>
+  <button type="button" class="tag" data-desc="An AI-powered code editor built for coding alongside AI."><img src="https://cdn.simpleicons.org/cursor/dddddd" alt="" loading="lazy" onerror="this.remove()">Cursor</button>
+  <button type="button" class="tag" data-desc="Anthropic's agentic coding tool that reads, edits and runs code with Claude AI."><img src="https://cdn.simpleicons.org/claude" alt="" loading="lazy" onerror="this.remove()">Claude Code</button>
+  <button type="button" class="tag" data-desc="A workflow automation platform for connecting apps, APIs and AI agents."><img src="https://cdn.simpleicons.org/n8n" alt="" loading="lazy" onerror="this.remove()">n8n</button>
+  <button type="button" class="tag" data-desc="An open-source personal AI assistant that runs on your own devices and works through your chat apps."><img src="https://openclaw.ai/favicon.svg" alt="" loading="lazy" onerror="this.remove()">OpenClaw</button>
+  <button type="button" class="tag" data-desc="Hosts code with Git version control, collaboration and deployment workflows."><img class="invert" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" loading="lazy" onerror="this.remove()">GitHub</button>
+  <button type="button" class="tag" data-desc="A deep learning framework for building and training neural networks."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" alt="" loading="lazy" onerror="this.remove()">PyTorch</button>
+  <button type="button" class="tag" data-desc="Google's end-to-end platform for building and deploying machine learning models."><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy" onerror="this.remove()">TensorFlow</button>
 </div></div>
 </div>
 </div></section>
@@ -279,6 +292,12 @@ footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);dis
 </div></div></section>
 
 <section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>06</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
+<div class="tmodal" id="tmodal" role="dialog" aria-modal="true" aria-labelledby="tmodalName" aria-hidden="true">
+  <div class="tmodal-card"><button type="button" class="tmodal-close" id="tmodalClose" aria-label="Close">✕</button>
+    <div class="tmodal-logo"><img id="tmodalImg" alt=""></div>
+    <div class="tmodal-cat" id="tmodalCat"></div><div class="tmodal-name" id="tmodalName"></div><p class="tmodal-desc" id="tmodalDesc"></p>
+  </div>
+</div>
 </main>
 <footer class="wrap"><span>© 2026 Leone</span><span>Built with curiosity.</span></footer>
 
@@ -811,10 +830,29 @@ document.addEventListener('mousemove',e=>{
  else{let ang=Math.atan2(dy,dx)*180/Math.PI; if(ang<0)ang+=360; dir=DIRS[Math.round(ang/45)%8];}
  if(dir!==lastDir){lastDir=dir;face.src=`images/face-${dir}.png`;}
 });
-document.querySelectorAll('a,.btn,.olang,.pcard').forEach(x=>{
+document.querySelectorAll('a,.btn,.olang,.pcard,.stackCol .tag').forEach(x=>{
  x.onmouseenter=()=>{if(cursor){cursor.style.width='34px';cursor.style.height='34px'}};
  x.onmouseleave=()=>{if(cursor){cursor.style.width='18px';cursor.style.height='18px'}};
 });
+// ---- Stack pop-up ----
+(()=>{
+  const modal=document.getElementById('tmodal'),img=document.getElementById('tmodalImg');
+  let opener=null;
+  function open(tag){
+    const src=tag.querySelector('img');
+    img.src=src?src.src:'';img.className=src?src.className:'';img.style.display=src?'':'none';
+    document.getElementById('tmodalCat').textContent=tag.closest('.stackCol').querySelector('h3').textContent;
+    document.getElementById('tmodalName').textContent=tag.textContent.trim();
+    document.getElementById('tmodalDesc').textContent=tag.dataset.desc||'';
+    opener=tag;modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+    document.getElementById('tmodalClose').focus();
+  }
+  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');if(opener)opener.focus();}
+  document.querySelectorAll('.stackCol .tag').forEach(t=>t.addEventListener('click',()=>open(t)));
+  document.getElementById('tmodalClose').addEventListener('click',close);
+  modal.addEventListener('click',e=>{if(e.target===modal)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+})();
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(x=>obs.observe(x));
 
