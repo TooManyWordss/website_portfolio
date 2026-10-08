@@ -8,22 +8,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#ffffff;--panel:#f4f4f4;--text:#111111;--muted:#555555;--orange:#111111;--line:#dddddd;--mono:'JetBrains Mono',monospace;--sans:Inter,Arial,sans-serif}
+:root{--bg:#0b0b0b;--panel:#161616;--text:#ededed;--muted:#a0a0a0;--orange:#ededed;--line:#2a2a2a;--mono:'JetBrains Mono',monospace;--sans:Inter,Arial,sans-serif;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;background:var(--bg)}
 body{background:transparent;color:var(--text);font-family:var(--sans);overflow-x:hidden}
-#universe{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
-.dots{position:fixed;width:340px;height:340px;pointer-events:none;background-image:radial-gradient(#00000022 1px,transparent 1px);background-size:16px 16px;mask-image:radial-gradient(circle,#000 0%,transparent 72%)}
+#universe{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+.dots,.nebula{z-index:-1}
+.dots{position:fixed;width:340px;height:340px;pointer-events:none;background-image:radial-gradient(#ffffff22 1px,transparent 1px);background-size:16px 16px;mask-image:radial-gradient(circle,#000 0%,transparent 72%)}
 .dots.d1{top:-40px;right:-40px}.dots.d2{bottom:-40px;left:-40px}
 .nebula{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:.22;animation:drift 46s ease-in-out infinite alternate}
-.nebula.n1{width:620px;height:620px;background:radial-gradient(circle,#00000018,transparent 70%);top:-180px;left:-140px}
-.nebula.n2{width:520px;height:520px;background:radial-gradient(circle,#00000012,transparent 70%);bottom:-160px;right:-120px;animation-delay:-15s}
-.nebula.n3{width:420px;height:420px;background:radial-gradient(circle,#00000012,transparent 70%);top:45%;left:58%;animation-delay:-30s}
+.nebula.n1{width:620px;height:620px;background:radial-gradient(circle,#ffffff18,transparent 70%);top:-180px;left:-140px}
+.nebula.n2{width:520px;height:520px;background:radial-gradient(circle,#ffffff12,transparent 70%);bottom:-160px;right:-120px;animation-delay:-15s}
+.nebula.n3{width:420px;height:420px;background:radial-gradient(circle,#ffffff12,transparent 70%);top:45%;left:58%;animation-delay:-30s}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,-50px) scale(1.18)}}
 a{color:inherit;text-decoration:none}.wrap{width:min(1150px,92%);margin:auto}
 .mono{font-family:var(--mono)}
-nav{position:fixed;top:0;width:100%;z-index:20;background:#ffffffcc;backdrop-filter:blur(16px);border-bottom:1px solid #0000000d}
+nav{position:fixed;top:0;width:100%;z-index:20;background:#0b0b0bcc;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff14}
 .nav{height:70px;display:flex;align-items:center;justify-content:space-between}.logo{font-family:var(--mono);font-size:19px;font-weight:700}.logo i{color:var(--orange);font-style:normal}
-.links{display:flex;gap:25px;font-family:var(--mono);font-size:12px;color:#555}.links a:hover{color:#111}
+.links{display:flex;gap:25px;font-family:var(--mono);font-size:12px;color:#999}.links a:hover{color:#fff}
 .hero{min-height:100vh;display:grid;align-items:center;padding-top:90px}.heroGrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
 h1{font-family:var(--mono);font-weight:700;font-size:clamp(48px,7vw,80px);line-height:.95;letter-spacing:-.02em}
 .h1grad{color:transparent;-webkit-text-stroke:1.5px var(--orange);text-stroke:1.5px var(--orange)}
@@ -31,49 +32,50 @@ h1{font-family:var(--mono);font-weight:700;font-size:clamp(48px,7vw,80px);line-h
 .tech-text-canvas{display:block;width:100%;height:100%}
 #nameText{height:150px;margin-bottom:4px}
 @media(max-width:800px){#nameText{height:100px}}
-.badge{display:inline-flex;align-items:center;gap:2px;padding:8px 12px;border:1px solid #00000055;border-radius:99px;color:#333;font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:20px;min-height:1.4em}
+.badge{display:inline-flex;align-items:center;gap:2px;padding:8px 12px;border:1px solid #ffffff55;border-radius:99px;color:#ccc;font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:20px;min-height:1.4em}
 .caret{animation:blink 1s step-start infinite}
 @keyframes blink{50%{opacity:0}}
-.lead{max-width:610px;color:#444;font-size:18px;line-height:1.7;margin:26px 0}.lead b{color:#111}
-.social{display:flex;gap:22px;font-family:var(--mono);font-size:13px;color:#555;margin-top:6px}.social a:hover{color:var(--orange)}
-.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:13px 18px;border:1px solid var(--line);border-radius:10px;font-weight:700;font-family:var(--mono);font-size:13px;transition:.2s}.btn:hover{transform:translateY(-3px);border-color:#999}.primary{background:var(--orange);color:#fff;border-color:var(--orange)}
-.photoWrap{position:relative;width:100%;max-width:340px;aspect-ratio:1/1.05;margin:auto;border:1px solid var(--line);background:#eeeeee}
+.lead{max-width:610px;color:#bbb;font-size:18px;line-height:1.7;margin:26px 0}.lead b{color:#fff}
+.hero .lead,.hero .social,.hero .badge{text-shadow:0 0 2px #000,0 1px 14px #000}
+.social{display:flex;gap:22px;font-family:var(--mono);font-size:13px;color:#999;margin-top:6px}.social a:hover{color:var(--orange)}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{padding:13px 18px;border:1px solid var(--line);border-radius:10px;font-weight:700;font-family:var(--mono);font-size:13px;transition:.2s}.btn:hover{transform:translateY(-3px);border-color:#666}.primary{background:var(--orange);color:#0b0b0b;border-color:var(--orange)}
+.photoWrap{position:relative;width:100%;max-width:340px;aspect-ratio:1/1.05;margin:auto;border:1px solid var(--line);background:#1a1a1a}
 .photoWrap img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;filter:grayscale(1) contrast(1.3);transition:transform .2s}
 .photoWrap.noimg img{display:none}
-.photoWrap .fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#555;font-family:var(--mono);font-size:12px;line-height:1.7;padding:20px}
+.photoWrap .fallback{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#999;font-family:var(--mono);font-size:12px;line-height:1.7;padding:20px}
 .photoWrap.noimg .fallback{display:grid}
 .photoWrap .tint{display:none}
 .photoWrap .grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.45;background-image:radial-gradient(#000 1px,transparent 1.2px);background-size:4px 4px}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:50px;border-top:1px solid var(--line)}
-.fact{background:var(--bg);padding:20px 10px}.fact strong{font-family:var(--mono);font-size:15px;display:block}.fact span{color:#555;font-size:11px;font-family:var(--mono)}
+.fact{background:var(--bg);padding:20px 10px}.fact strong{font-family:var(--mono);font-size:15px;display:block}.fact span{color:#999;font-size:11px;font-family:var(--mono)}
 section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px}
-.eyebrow{font-family:var(--mono);font-size:13px;color:#555}.eyebrow b{color:#111}
+.eyebrow{font-family:var(--mono);font-size:13px;color:#999}.eyebrow b{color:#fff}
 .head h2{font-family:var(--mono);font-size:clamp(28px,4vw,42px);letter-spacing:-.02em}
-.about{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}.about p{font-size:19px;color:#444;line-height:1.65}
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}.about p{font-size:19px;color:#bbb;line-height:1.65}
 .pstage{position:relative;height:420px;display:flex;align-items:center;justify-content:center}
 .pcard{position:absolute;width:min(460px,92%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s}
-.pcard .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.pill{font-family:var(--mono);font-size:10px;border:1px solid #ccc;border-radius:99px;padding:6px 11px;color:#555}
+.pcard .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.pill{font-family:var(--mono);font-size:10px;border:1px solid #333;border-radius:99px;padding:6px 11px;color:#aaa}
 .pTop{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.picon{width:44px;height:44px;border-radius:11px;overflow:hidden;background:#eeeeee;border:1px solid var(--line);position:relative;flex:none}
+.picon{width:44px;height:44px;border-radius:11px;overflow:hidden;background:#1f1f1f;border:1px solid var(--line);position:relative;flex:none}
 .picon img{width:100%;height:100%;object-fit:cover;display:block}
 .picon.noimg img{display:none}
-.picon .pfallback{position:absolute;inset:0;display:none;place-items:center;font-family:var(--mono);font-size:16px;color:#777}
+.picon .pfallback{position:absolute;inset:0;display:none;place-items:center;font-family:var(--mono);font-size:16px;color:#888}
 .picon.noimg .pfallback{display:grid}
 .pcard h3{font-size:26px;letter-spacing:-.02em;margin:0}
-.psub{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.04em;color:#555;margin:0 0 12px 58px}.pcard p{color:#444;line-height:1.6;font-size:15px}
-.pcard .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.pcard .tag{font-family:var(--mono);font-size:10px;color:#555;border:1px solid #ccc;border-radius:99px;padding:6px 9px}
+.psub{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.04em;color:#aaa;margin:0 0 12px 58px}.pcard p{color:#bbb;line-height:1.6;font-size:15px}
+.pcard .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}.pcard .tag{font-family:var(--mono);font-size:10px;color:#aaa;border:1px solid #333;border-radius:99px;padding:6px 9px}
 .pnav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px;font-family:var(--mono)}
-.pnav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:#111;font-size:16px;cursor:pointer}.pnav button:hover{border-color:var(--orange);color:var(--orange)}
-.pnav span{color:#555;font-size:12px}
+.pnav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:16px;cursor:pointer}.pnav button:hover{border-color:var(--orange);color:var(--orange)}
+.pnav span{color:#999;font-size:12px}
 .offer{display:block}
 .flex-offer{position:relative}
-.flex-carousel-shell{position:relative;width:100%;height:570px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#f8f8f8,#fff);isolation:isolate}
-.flex-carousel-shell::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#00000008,transparent 52%);pointer-events:none}
+.flex-carousel-shell{position:relative;width:100%;height:570px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#141414,#0b0b0b);isolation:isolate}
+.flex-carousel-shell::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#ffffff08,transparent 52%);pointer-events:none}
 .flex-carousel-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1200px;touch-action:pan-y;cursor:grab}
 .flex-carousel-stage.dragging{cursor:grabbing}
-.fc-card{position:absolute;width:min(310px,68vw);height:405px;border:1px solid #cfcfcf;border-radius:20px;overflow:hidden;background:#111;color:#fff;box-shadow:0 24px 70px #00000018;transition:transform .65s cubic-bezier(.18,.8,.22,1),opacity .5s,filter .5s;will-change:transform;user-select:none}
+.fc-card{position:absolute;width:min(310px,68vw);height:405px;border:1px solid #2a2a2a;border-radius:20px;overflow:hidden;background:#111;color:#fff;box-shadow:0 24px 70px #00000080;transition:transform .65s cubic-bezier(.18,.8,.22,1),opacity .5s,filter .5s;will-change:transform;user-select:none}
 .fc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,#000000c9 100%);pointer-events:none}
-.fc-card-media{position:absolute;inset:0;background:#ddd}
+.fc-card-media{position:absolute;inset:0;background:#1b1b1b}
 .fc-card-media img,.fc-card-media video{width:100%;height:100%;display:block;object-fit:cover}
 .fc-card-media img{filter:grayscale(.25) contrast(1.05)}
 .fc-card-media.noimg img{display:none}
@@ -83,17 +85,17 @@ section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom
 .fc-number{font:700 10px var(--mono);letter-spacing:.16em;color:#ddd;margin-bottom:8px}
 .fc-title{font:700 25px var(--mono);line-height:1.05}
 .fc-subtitle{font-size:12px;color:#ddd;margin-top:8px;line-height:1.5}
-.fc-card.active{box-shadow:0 30px 90px #00000030}
+.fc-card.active{box-shadow:0 30px 90px #000000a0}
 .fc-card.side{filter:saturate(.7)}
 .fc-card.hidden{pointer-events:none}
 .fc-overlay{position:absolute;z-index:5;top:22px;left:22px;right:22px;display:flex;justify-content:flex-end;align-items:flex-start;pointer-events:none}
-.fc-counter{font:700 11px var(--mono);color:#555}
+.fc-counter{font:700 11px var(--mono);color:#999}
 .fc-controls{position:absolute;z-index:7;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:12px}
-.fc-control{width:42px;height:42px;border-radius:50%;border:1px solid #cfcfcf;background:#ffffffe8;color:#111;cursor:pointer;font:700 16px var(--mono);transition:.2s;backdrop-filter:blur(8px)}
-.fc-control:hover{transform:translateY(-2px);border-color:#111;background:#111;color:#fff}
+.fc-control{width:42px;height:42px;border-radius:50%;border:1px solid #333;background:#161616e8;color:#eee;cursor:pointer;font:700 16px var(--mono);transition:.2s;backdrop-filter:blur(8px)}
+.fc-control:hover{transform:translateY(-2px);border-color:#eee;background:#eee;color:#111}
 .fc-dots{display:flex;gap:6px;align-items:center}
-.fc-dot{width:5px;height:5px;border-radius:50%;background:#aaa;transition:.25s}
-.fc-dot.active{width:22px;border-radius:999px;background:#111}
+.fc-dot{width:5px;height:5px;border-radius:50%;background:#555;transition:.25s}
+.fc-dot.active{width:22px;border-radius:999px;background:#eee}
 @media(max-width:800px){
  .flex-carousel-shell{height:500px;border-radius:18px}
  .fc-card{height:350px;width:min(270px,70vw)}
@@ -101,14 +103,22 @@ section{padding:110px 0}.head{border-bottom:1px solid var(--line);padding-bottom
 @media(prefers-reduced-motion:reduce){
  .fc-card{transition:none}
 }
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stackCol{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px}
+.stackCol .eyebrow{margin-bottom:8px}
+.stackCol h3{font-family:var(--mono);font-size:20px;letter-spacing:-.01em;margin-bottom:18px}
+.stackCol .tags{display:flex;gap:7px;flex-wrap:wrap}.stackCol .tag{font-family:var(--mono);font-size:11px;color:#bbb;border:1px solid #333;border-radius:99px;padding:7px 11px;transition:.2s}
+.stackCol .tag:hover{border-color:var(--orange);color:#fff}
+.stack.two{grid-template-columns:repeat(2,1fr)}.stack.one{grid-template-columns:1fr}
+@media(max-width:800px){.stack,.stack.two{grid-template-columns:1fr}}
 .timeline .time{display:grid;grid-template-columns:110px 1fr;gap:26px;padding:24px 0;border-bottom:1px solid var(--line)}
 .timeline .time:last-child{border-bottom:none}
 .time .age{font-family:var(--mono);color:var(--orange);font-weight:700}
-.time h3{font-size:20px;margin-bottom:6px}.time p{color:#444;line-height:1.6;font-size:14px}
-.contact{padding:55px;border:1px solid #dddddd;border-radius:24px;background:linear-gradient(135deg,#f7f7f7,#ffffff)}
+.time h3{font-size:20px;margin-bottom:6px}.time p{color:#bbb;line-height:1.6;font-size:14px}
+.contact{padding:55px;border:1px solid #2a2a2a;border-radius:24px;background:linear-gradient(135deg,#161616,#0b0b0b)}
 .contact h2{font-family:var(--mono);font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.01em;margin-top:10px}
-.contact p{max-width:600px;color:#444;line-height:1.6;margin:22px 0 28px}
-footer{padding:30px 0 45px;color:#555;font-size:12px;font-family:var(--mono);display:flex;justify-content:space-between}
+.contact p{max-width:600px;color:#bbb;line-height:1.6;margin:22px 0 28px}
+footer{padding:30px 0 45px;color:#888;font-size:12px;font-family:var(--mono);display:flex;justify-content:space-between}
 .reveal{opacity:0;transform:translateY(25px);transition:.7s}.show{opacity:1;transform:none}
 .cursor{position:fixed;width:18px;height:18px;border:1px solid var(--orange);border-radius:50%;pointer-events:none;z-index:100;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:.15s}
 @media(max-width:800px){.links{display:none}.heroGrid,.about{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.timeline .time{grid-template-columns:1fr}section{padding:80px 0}.cursor{display:none}.dots{display:none}}
@@ -118,18 +128,19 @@ footer{padding:30px 0 45px;color:#555;font-size:12px;font-family:var(--mono);dis
 <canvas id="universe"></canvas>
 <div class="nebula n1"></div><div class="nebula n2"></div><div class="nebula n3"></div>
 <div class="dots d1"></div><div class="dots d2"></div>
-<nav><div class="wrap nav"><a class="logo" href="#home">LEONE<i>.</i></a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#offer">Skills</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div></div></nav>
+<nav><div class="wrap nav"><a class="logo" href="#home">LEONE<i>.</i></a><div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#offer">Skills</a><a href="#stack">Stack</a><a href="#aitools">AI Tools</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div></div></nav>
 
 <main>
 <section class="hero" id="home"><div class="wrap heroGrid">
 
-<!-- PROFILE PHOTO — the face follows your cursor using 9 photos in the "images" folder:
-       images/face-c.jpg   (looking straight ahead — used when the cursor is centered)
-       images/face-n.jpg   images/face-ne.jpg   images/face-e.jpg   images/face-se.jpg
-       images/face-s.jpg   images/face-sw.jpg   images/face-w.jpg   images/face-nw.jpg -->
+<!-- PROFILE PHOTO — the face follows your cursor using 9 background-removed photos in the "images" folder:
+       images/face-c.png   (looking straight ahead — used when the cursor is centered)
+       images/face-n.png   images/face-ne.png   images/face-e.png   images/face-se.png
+       images/face-s.png   images/face-sw.png   images/face-w.png   images/face-nw.png
+     (the original .jpg photos are kept alongside them) -->
 <div class="visual reveal" id="visual">
   <div class="photoWrap" id="photoWrap">
-    <img id="face" src="images/face-c.jpg" alt="Profile photo">
+    <img id="face" src="images/face-c.png" alt="Profile photo">
     <div class="tint"></div>
     <div class="grain"></div>
     <div class="fallback">ADD AN "images" FOLDER<br>WITH face-c / n / ne / e / se /<br>s / sw / w / nw .jpg<br>NEXT TO THIS FILE</div>
@@ -218,55 +229,164 @@ footer{padding:30px 0 45px;color:#555;font-size:12px;font-family:var(--mono);dis
 </div>
 </div></section>
 
+<!-- STACKS KNOWN — add / remove tools by editing the <span class="tag"> items -->
+<section id="stack"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>04</b> / Stack</div><h2>Stacks known.</h2></div>
+<div class="stack two">
+<div class="stackCol"><div class="eyebrow">// client</div><h3>Front-End</h3><div class="tags">
+  <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Tailwind CSS</span>
+</div></div>
+<div class="stackCol"><div class="eyebrow">// server</div><h3>Back-End</h3><div class="tags">
+  <span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span><span class="tag">MySQL</span><span class="tag">SQLite</span><span class="tag">Firebase</span><span class="tag">C / C++</span>
+</div></div>
+</div>
+</div></section>
+
+<!-- AI TOOLS — add / remove tools by editing the <span class="tag"> items -->
+<section id="aitools"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>05</b> / AI Development</div><h2>Tools I use for AI.</h2></div>
+<div class="stack one">
+<div class="stackCol"><div class="eyebrow">// intelligence</div><h3>AI Development</h3><div class="tags">
+  <span class="tag">n8n</span><span class="tag">Cursor</span>
+</div></div>
+</div>
+</div></section>
+
 <!-- JOURNEY — edit ages / titles / descriptions here -->
-<section id="journey"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>04</b> / Journey</div><h2>Keep building.</h2></div><div class="timeline">
+<section id="journey"><div class="wrap reveal"><div class="head"><div class="eyebrow"><b>06</b> / Journey</div><h2>Keep building.</h2></div><div class="timeline">
 <div class="time"><span class="age">AGE 15</span><div><h3>Started Coding and Software Development</h3><p>First steps into programming — learning the fundamentals and writing my first projects such as Applications and Miniature softwares.</p></div></div>
 <div class="time"><span class="age">AGE 16</span><div><h3>Joined Multiple Local Robotics and Coding Tournaments</h3><p>Competed in local robotics and coding events, building under real time pressure. And even winning.</p></div></div>
 <div class="time"><span class="age">AGE 17</span><div><h3>Developed Softwares and Systems</h3><p>Built kiosks, websites and robots — taking projects from idea to working system.</p></div></div>
 <div class="time"><span class="age">AGE 18</span><div><h3>Taking My Skills to a Professional Stage</h3><p>Applying everything learned so far to real, professional-level work.</p></div></div>
 </div></div></section>
 
-<section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>05</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
+<section id="contact"><div class="wrap reveal"><div class="contact"><div class="eyebrow"><b>07</b> / Contact</div><h2>Have an idea?<br>Let's build.</h2><p>Whether it is an AI project, software idea, creative collaboration or something completely different, I'm always interested in making things.</p><a class="btn primary" href="mailto:lyonmigs@gmail.com">Email me ↗</a></div></div></section>
 </main>
 <footer class="wrap"><span>© 2026 Leone</span><span>Built with curiosity.</span></footer>
 
 <script>
 (function(){
 const cv=document.getElementById('universe'),ctx=cv.getContext('2d');
-let w,h,stars,shoot=null,galaxy=[];
-function initGalaxy(){galaxy=[];const arms=4,perArm=130;
- for(let a=0;a<arms;a++)for(let i=0;i<perArm;i++){const t=i/perArm;
-  galaxy.push({ang:a*(Math.PI*2/arms)+t*3.6*Math.PI+(Math.random()-.5)*.5,r:t+(Math.random()-.5)*.06,
-   sz:Math.random()*1.3+.3,c:Math.random()<.12?'#111':(Math.random()<.4?'#444':'#222')});}
- for(let i=0;i<160;i++)galaxy.push({ang:Math.random()*Math.PI*2,r:Math.random()*.18,sz:Math.random()*1.1+.3,c:Math.random()<.5?'#111':'#333'});}
-function size(){w=cv.width=innerWidth;h=cv.height=innerHeight;
- stars=Array.from({length:Math.round((w*h)/6000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.3,p:Math.random()*Math.PI*2,s:Math.random()*.02+.008}));}
-size();initGalaxy();addEventListener('resize',size);
+const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// mostly white stars, with a few faint cool / warm ones for depth
+const TINTS=['255,255,255','255,255,255','255,255,255','205,222,255','255,232,205'];
+let w,h,dpr,gR,stars,galImg=null,galW=0,twinklers=[],shoots=[],last=0,spin=0,scrollV=0,lastScroll=scrollY;
+const mouse={x:0,y:0,tx:0,ty:0,px:-1e4,py:-1e4};
+// ---- galaxy: rendered once in high detail to an offscreen canvas, then rotated/tilted every frame ----
+const ARMS=[{off:0,k:1},{off:Math.PI,k:1},{off:Math.PI*.5,k:.55},{off:Math.PI*1.5,k:.55}],WIND=3.2*Math.PI;
+const gauss=()=>(Math.random()+Math.random()+Math.random()-1.5)/1.5;
+// point on a spiral arm in unit coordinates (galaxy radius = 1); t runs from core (0) to rim (1)
+function armPoint(arm,t,spread,lag=0){const r=.08+t*.92,ang=arm.off+t*WIND+lag,s=spread*(.03+t*.09);
+ return[Math.cos(ang)*r+gauss()*s,Math.sin(ang)*r+gauss()*s];}
+function buildGalaxy(){
+ const S=Math.min(2400,Math.round(gR*2*dpr)),R=S/2,px=Math.max(1,S/1400);
+ const g=document.createElement('canvas');g.width=g.height=S;const c=g.getContext('2d');c.translate(R,R);
+ const blob=document.createElement('canvas');blob.width=blob.height=64;const b=blob.getContext('2d');
+ const bg=b.createRadialGradient(32,32,0,32,32,32);bg.addColorStop(0,'rgba(255,255,255,1)');bg.addColorStop(.4,'rgba(255,255,255,.35)');bg.addColorStop(1,'rgba(255,255,255,0)');
+ b.fillStyle=bg;b.fillRect(0,0,64,64);
+ const puff=(x,y,sz,a)=>{c.globalAlpha=a;c.drawImage(blob,x*R-sz/2,y*R-sz/2,sz,sz);};
+ const tint=()=>{const r=Math.random();return r<.16?'215,228,255':r<.26?'255,236,210':'255,255,255';};
+ // faint disk glow
+ let gr=c.createRadialGradient(0,0,0,0,0,R);
+ gr.addColorStop(0,'rgba(255,255,255,.10)');gr.addColorStop(.35,'rgba(255,255,255,.035)');gr.addColorStop(1,'rgba(255,255,255,0)');
+ c.fillStyle=gr;c.fillRect(-R,-R,S,S);
+ c.globalCompositeOperation='lighter';
+ // glowing gas clouds along the arms
+ for(const arm of ARMS)for(let i=0;i<520*arm.k;i++){const t=Math.random()**.8,[x,y]=armPoint(arm,t,1.6);
+  puff(x,y,R*(.05+Math.random()*.08)*(1-t*.5),.035*arm.k*(1-t*.6));}
+ // arm stars
+ for(const arm of ARMS)for(let i=0;i<10000*arm.k;i++){const t=Math.random()**.9,[x,y]=armPoint(arm,t,1),sz=(Math.random()**3*1.8+.4)*px;
+  c.globalAlpha=(.25+Math.random()*.6)*(1-t*.55);c.fillStyle=`rgb(${tint()})`;c.fillRect(x*R,y*R,sz,sz);}
+ // disk stars between the arms
+ for(let i=0;i<8000;i++){const r=Math.random()**1.6*.95,a=Math.random()*6.283,sz=(Math.random()**3*1.4+.4)*px;
+  c.globalAlpha=(.08+Math.random()*.3)*(1-r);c.fillStyle=`rgb(${tint()})`;c.fillRect(Math.cos(a)*r*R,Math.sin(a)*r*R,sz,sz);}
+ // bright star-forming knots
+ for(const arm of ARMS)for(let i=0;i<28*arm.k;i++){const t=.2+Math.random()*.75,[x,y]=armPoint(arm,t,.7),sz=R*(.01+Math.random()*.02);
+  puff(x,y,sz,.45);c.globalAlpha=.8;c.fillStyle='rgb(225,235,255)';
+  for(let k=0;k<14;k++)c.fillRect(x*R+gauss()*sz*.5,y*R+gauss()*sz*.5,px*1.2,px*1.2);}
+ // warm central bulge
+ gr=c.createRadialGradient(0,0,0,0,0,R*.3);
+ gr.addColorStop(0,'rgba(255,247,232,.32)');gr.addColorStop(.1,'rgba(255,243,226,.2)');gr.addColorStop(.35,'rgba(255,238,215,.1)');gr.addColorStop(1,'rgba(255,238,215,0)');
+ c.globalAlpha=1;c.fillStyle=gr;c.beginPath();c.arc(0,0,R*.3,0,7);c.fill();
+ for(let i=0;i<7000;i++){const r=Math.abs(gauss())*.2,a=Math.random()*6.283;
+  c.globalAlpha=.12+Math.random()*.3;c.fillStyle='rgb(255,240,220)';c.fillRect(Math.cos(a)*r*R,Math.sin(a)*r*R,px,px);}
+ // dark dust lanes hugging the inner edge of the two main arms
+ c.globalCompositeOperation='destination-out';
+ for(const arm of ARMS.slice(0,2))for(let i=0;i<900;i++){const t=.08+Math.random()*.85,[x,y]=armPoint(arm,t,.35,-.17);
+  puff(x,y,R*(.015+Math.random()*.035),.14);}
+ c.globalCompositeOperation='source-over';
+ galImg=g;galW=w;
+ // a live layer of stars on top of the static image that shimmer each frame
+ twinklers=[];
+ for(const arm of ARMS)for(let i=0;i<220*arm.k;i++){const t=Math.random(),[x,y]=armPoint(arm,t,1);
+  twinklers.push({x,y,r:Math.random()*1.3+.5,ph:Math.random()*6.28,s:.001+Math.random()*.003,a:1-t*.6});}
+ for(let i=0;i<120;i++){const r=Math.abs(gauss())*.18,a=Math.random()*6.283;
+  twinklers.push({x:Math.cos(a)*r,y:Math.sin(a)*r,r:Math.random()*1.1+.4,ph:Math.random()*6.28,s:.001+Math.random()*.003,a:1});}
+}
+let rebuild=0;
+function size(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;
+ cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+ gR=Math.max(w,h)*.55;
+ // rebuilding is heavy, so only do it once resizing settles and the width actually changed (not on mobile URL-bar jumps)
+ if(!galImg)buildGalaxy();else if(w!==galW){clearTimeout(rebuild);rebuild=setTimeout(buildGalaxy,250);}
+ // z = depth: near stars are bigger, brighter and move more with parallax
+ stars=Array.from({length:Math.round((w*h)/5000)},()=>{const z=Math.random()**2*.9+.1;
+  return{x:Math.random()*w,y:Math.random()*h,z,r:z*1.6+.25,p:Math.random()*6.28,s:Math.random()*.003+.0008,
+   c:TINTS[Math.random()*TINTS.length|0],vx:(Math.random()-.5)*.06*z};});}
+size();addEventListener('resize',size);
+addEventListener('mousemove',e=>{mouse.tx=e.clientX/w*2-1;mouse.ty=e.clientY/h*2-1;mouse.px=e.clientX;mouse.py=e.clientY;});
+document.addEventListener('mouseleave',()=>{mouse.px=mouse.py=-1e4;});
+addEventListener('scroll',()=>{scrollV+=scrollY-lastScroll;lastScroll=scrollY;},{passive:true});
+function spawnShoot(){const dir=Math.random()<.5?1:-1,speed=7+Math.random()*7,a=(.12+Math.random()*.3)*Math.PI;
+ shoots.push({x:dir>0?Math.random()*w*.7:w*.3+Math.random()*w*.7,y:Math.random()*h*.45,
+  vx:Math.cos(a)*speed*dir,vy:Math.sin(a)*speed,life:0,max:45+Math.random()*40,len:9+Math.random()*9});}
 function frame(t){
+ const dt=Math.min(3,(t-last||16.7)/16.7);last=t;
+ const motion=calm?.2:1;
+ mouse.x+=(mouse.tx-mouse.x)*.04*dt;mouse.y+=(mouse.ty-mouse.y)*.04*dt;
+ scrollV*=.9;
+ // galaxy spins steadily, and faster while you scroll
+ spin+=(.0004+Math.min(Math.abs(scrollV),160)*.00006)*dt*motion;
  ctx.clearRect(0,0,w,h);
+ const sy=scrollY,near=[];
  for(const st of stars){
+  st.x+=st.vx*dt*motion;
+  let x=st.x+mouse.x*st.z*45,y=st.y-sy*st.z*.3+mouse.y*st.z*28;
+  x=((x%w)+w)%w;y=((y%h)+h)%h;
   const tw=.5+.5*Math.sin(t*st.s+st.p);
-  ctx.globalAlpha=.25+tw*.75;
-  ctx.fillStyle='#111';
-  ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,7);ctx.fill();
+  let a=.15+tw*.85*(.35+st.z*.65);
+  const dx=x-mouse.px,dy=y-mouse.py,d2=dx*dx+dy*dy;
+  if(d2<25000){const k=1-d2/25000;a=Math.min(1,a+k*.6);if(st.z>.3&&near.length<45)near.push([x,y,k]);}
+  ctx.globalAlpha=a;ctx.fillStyle=`rgb(${st.c})`;ctx.beginPath();ctx.arc(x,y,st.r,0,7);ctx.fill();
+  if(st.r>1.2&&tw>.88){ // sparkle cross on the brightest stars at the top of their twinkle
+   const L=st.r*7*(tw-.88)/.12;ctx.globalAlpha=a*.55;ctx.strokeStyle=`rgb(${st.c})`;ctx.lineWidth=.6;
+   ctx.beginPath();ctx.moveTo(x-L,y);ctx.lineTo(x+L,y);ctx.moveTo(x,y-L);ctx.lineTo(x,y+L);ctx.stroke();}
  }
- ctx.globalAlpha=1;
- if(!shoot&&Math.random()<.004){shoot={x:Math.random()*w*.6,y:Math.random()*h*.3,vx:6+Math.random()*4,vy:3+Math.random()*2,life:0};}
- if(shoot){shoot.x+=shoot.vx;shoot.y+=shoot.vy;shoot.life++;
-  const grad=ctx.createLinearGradient(shoot.x,shoot.y,shoot.x-shoot.vx*8,shoot.y-shoot.vy*8);
-  grad.addColorStop(0,'#000');grad.addColorStop(1,'transparent');
-  ctx.strokeStyle=grad;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(shoot.x,shoot.y);ctx.lineTo(shoot.x-shoot.vx*8,shoot.y-shoot.vy*8);ctx.stroke();
-  if(shoot.life>60||shoot.x>w||shoot.y>h)shoot=null;}
- // miniature milky way — centered, passively rotating spiral
- const gcx=w*.5,gcy=h*.5,gR=Math.min(w,h)*.34,rot=t*0.000015;
- const glowOuter=ctx.createRadialGradient(gcx,gcy,0,gcx,gcy,gR*.9);
- glowOuter.addColorStop(0,'rgba(0,0,0,.06)');glowOuter.addColorStop(1,'rgba(0,0,0,0)');
- ctx.fillStyle=glowOuter;ctx.beginPath();ctx.arc(gcx,gcy,gR*.9,0,7);ctx.fill();
- const core=ctx.createRadialGradient(gcx,gcy,0,gcx,gcy,gR*.22);
- core.addColorStop(0,'rgba(0,0,0,.16)');core.addColorStop(1,'rgba(0,0,0,0)');
- ctx.fillStyle=core;ctx.beginPath();ctx.arc(gcx,gcy,gR*.22,0,7);ctx.fill();
- for(const p of galaxy){const ang=p.ang+rot,x=gcx+Math.cos(ang)*p.r*gR,y=gcy+Math.sin(ang)*p.r*gR*.42;
-  ctx.globalAlpha=(1-p.r)*.75+.12;ctx.fillStyle=p.c||'#333';ctx.beginPath();ctx.arc(x,y,p.sz,0,7);ctx.fill();}
+ // constellation lines between stars around the cursor
+ ctx.strokeStyle='#fff';ctx.lineWidth=.6;
+ for(let i=0;i<near.length;i++)for(let j=i+1;j<near.length;j++){
+  const d=Math.hypot(near[i][0]-near[j][0],near[i][1]-near[j][1]);
+  if(d<95){ctx.globalAlpha=(1-d/95)*Math.min(near[i][2],near[j][2])*.6;
+   ctx.beginPath();ctx.moveTo(near[i][0],near[i][1]);ctx.lineTo(near[j][0],near[j][1]);ctx.stroke();}}
+ // big spiral galaxy — spins (arms trailing), tilts toward the cursor and slowly breathes
+ const gcx=w*.5+mouse.x*30,gcy=h*.5+mouse.y*20,tilt=.42+mouse.y*.1;
+ ctx.save();ctx.translate(gcx,gcy);ctx.rotate(-.3+mouse.x*.06);ctx.scale(1,tilt);ctx.rotate(-spin);
+ ctx.globalCompositeOperation='lighter';
+ ctx.globalAlpha=.82+.18*Math.sin(t*.0007);
+ ctx.drawImage(galImg,-gR,-gR,gR*2,gR*2);
+ ctx.fillStyle='#fff';
+ for(const p of twinklers){ctx.globalAlpha=p.a*(.5+.5*Math.sin(t*p.s+p.ph))**2;
+  ctx.beginPath();ctx.arc(p.x*gR,p.y*gR,p.r,0,7);ctx.fill();}
+ ctx.restore();
+ // shooting stars — up to three at once, in either direction, with a glowing head
+ if(!calm&&shoots.length<3&&Math.random()<.007*dt)spawnShoot();
+ shoots=shoots.filter(s=>{s.x+=s.vx*dt;s.y+=s.vy*dt;s.life+=dt;
+  const fade=Math.sin(Math.min(1,s.life/s.max)*Math.PI),tx=s.x-s.vx*s.len,ty=s.y-s.vy*s.len;
+  const grad=ctx.createLinearGradient(s.x,s.y,tx,ty);
+  grad.addColorStop(0,`rgba(255,255,255,${.9*fade})`);grad.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.globalAlpha=1;ctx.strokeStyle=grad;ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(tx,ty);ctx.stroke();
+  const head=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,6);
+  head.addColorStop(0,`rgba(255,255,255,${fade})`);head.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=head;ctx.beginPath();ctx.arc(s.x,s.y,6,0,7);ctx.fill();
+  return s.life<s.max&&s.x>-200&&s.x<w+200&&s.y<h+200;});
  ctx.globalAlpha=1;
  requestAnimationFrame(frame);
 }
@@ -643,8 +763,8 @@ createTechText(document.getElementById('nameText'), {
   fontWeight: 700,
   fontSize: 100,
   reveal: 'letter',
-  color: '#111111',
-  accentColor: '#555555',
+  color: '#ededed',
+  accentColor: '#aaaaaa',
   dashLength: 4,
   dashGap: 2,
   strokeWidth: 1.5,
@@ -669,7 +789,7 @@ document.addEventListener('mousemove',e=>{
  let dir;
  if(dist<centerRadius){dir='c';}
  else{let ang=Math.atan2(dy,dx)*180/Math.PI; if(ang<0)ang+=360; dir=DIRS[Math.round(ang/45)%8];}
- if(dir!==lastDir){lastDir=dir;face.src=`images/face-${dir}.jpg`;}
+ if(dir!==lastDir){lastDir=dir;face.src=`images/face-${dir}.png`;}
 });
 document.querySelectorAll('a,.btn,.olang,.pcard').forEach(x=>{
  x.onmouseenter=()=>{if(cursor){cursor.style.width='34px';cursor.style.height='34px'}};
